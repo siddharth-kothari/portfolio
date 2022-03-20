@@ -1,0 +1,55 @@
+.contact{
+    background-color: #616161;
+}
+
+.contact__body{
+    width: 780px;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.contact__card{
+    background-color: black !important;
+    border: 1px white solid;
+    border-radius: 10px;
+    width: 780px;
+    height: auto;
+    margin:50px auto;
+    
+}
+
+.contact__img{
+    width: 250px;
+    border: 5px solid white;
+    border-radius: 50%;
+    margin: 40px auto !important;
+    padding: 10px;  
+}
+
+.contact__mail{
+    text-decoration: none;
+    color: white;
+    font-family: 'Josefin Sans';
+    font-weight: bolder;
+    font-size: 3rem;
+    text-align: center;
+}
+.card-text{
+    display: flex !important;
+    justify-content: space-evenly;
+    margin-top: 4rem;
+    margin-bottom: 20px !important;
+}
+
+.contact__icon > .MuiSvgIcon-root{
+    font-size: 3rem !important;
+}
+
+.contact__icon > a{
+    text-decoration: none;
+    color: white; 
+    
+    
+}
+

@@ -1,0 +1,77 @@
+.intro{
+    display: flex;
+    width: 100%; 
+    text-align: center;
+    justify-content: center;
+    margin-top: 10rem !important;
+    margin-bottom: 10rem !important;
+
+}
+
+.intro__info{
+    color: white;
+    margin-left: 40px;
+    justify-content: center;
+    margin-top: auto;
+    margin-bottom: auto;
+    font-family: monospace;
+}
+
+.intro__info  h4 {
+    font-size: 3.5rem ;
+}
+
+.intro__job{
+    font-style: italic;
+    font-family: monospace;
+    font-size: 1rem !important;
+    opacity: 70%;
+}
+
+.intro__name{
+    font-size: 4.5rem;
+    font-weight: bolder;
+    color: cyan;
+    padding-left: 10px;
+    font-family: monospace;
+}
+.intro__city{
+    font-weight: bolder;
+    font-size: 1.5rem;
+    font-family: monospace;
+    color: #00FFFF;
+}
+
+.intro__description{
+    font-size: 1.3rem 
+}
+
+/* .intro__image{
+    flex: 0.5;
+    margin-right: 40px;
+    height: 400px;
+    width: 100%;
+    
+} */
+
+@media screen and (max-width: 480px){
+    .intro__info  h4 {
+        font-size: 1.8rem ;
+    }
+
+    .intro__name{
+        font-size: 2.8rem;
+    }
+
+    .intro__job{ 
+        font-size: 0.9rem !important;
+    }
+
+    .intro__description{
+        font-size: 1rem; 
+    }
+
+    .intro__city{
+        font-size: 1rem;
+    }
+}

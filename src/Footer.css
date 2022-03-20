@@ -1,0 +1,43 @@
+
+
+.footer{
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: space-evenly;
+    border-top: 0.1px solid lightgray;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    width: 100%;
+    z-index: 999;
+    background-color: #464646;
+}
+
+.footer__title{
+    padding-top: 10px;
+    display: flex;
+    align-items: center;
+    color: white;
+    font-weight: 700;
+    font-size: 1.2rem;
+    font-family: monospace;
+}
+
+.footer__left{
+    display: flex;
+}
+
+
+.footer__right{
+    display: flex;
+
+}
+
+@media screen and (max-width: 768px) {
+    .footer{
+        display: block;
+        justify-content: center !important; 
+        align-content: center !important;
+    }
+    
+}

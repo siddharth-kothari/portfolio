@@ -1,0 +1,39 @@
+.about{
+    width: 100%;
+    display: flex;
+    flex-direction: column !important; 
+    margin-top: 4rem;
+    
+}
+
+.about__title{
+    color: white;
+    font-size: 18px;
+    font-family: monospace;
+    font-weight: 800;
+    text-align: center;
+    color: cyan;
+    margin-bottom: 2rem !important;
+}
+
+.about__info{
+    color: white;
+    text-align: justify;
+    padding-left: 30% !important;
+    padding-right: 30% !important;
+    font-family: monospace;
+}
+
+.about__name{
+    font-size: 25px;
+    font-weight: bolder;
+    color: cyan;
+    padding-left: 10px;
+}
+
+.about__info > p{
+    font-family: monospace;
+    font-size: 21px;
+    font-weight: lighter;
+    opacity: 100 !important;
+}

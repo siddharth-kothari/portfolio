@@ -1,0 +1,21 @@
+.icon{
+    color: white;
+}
+
+.detail{
+    color: white; 
+    font-size: 18px;
+    font-family: 'Corbel';
+    font-weight: 400;
+    padding-left: 10px !important;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.resumeOption{
+    margin-left: 30px;
+    margin-right: 10px;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 25px;
+}
