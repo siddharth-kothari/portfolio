@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Experience } from "./Experience";
 import { IconCaretUpDownFilled, IconMinus, IconX } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
+import About from "./About";
 
 interface FolderPopupProps {
   folder: string;
@@ -70,13 +71,7 @@ const FolderPopup = ({ folder, closeFolder }: FolderPopupProps) => {
         );
       case "about":
         return (
-          <div>
-            <h2 className="text-xl font-bold max-w-7xl">About Me</h2>
-            <p>
-              I am a full-stack web developer specializing in modern JavaScript
-              frameworks like React, Next.js, and more.
-            </p>
-          </div>
+          <About />
         );
       case "skills":
         return (

@@ -9,6 +9,9 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        poppins: ['Poppins', 'sans-serif'], // Add Poppins as a custom font
+      },
       animation: {
         "meteor-effect": "meteor 5s linear infinite",
       },
