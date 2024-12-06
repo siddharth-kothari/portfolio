@@ -3,19 +3,43 @@
 import React from "react";
 import DarkModeToggle from "./DarkModeToggle";
 import Link from "next/link";
-import { IconBatteryFilled, IconSearch, IconWifi } from "@tabler/icons-react";
+import {
+  IconBatteryFilled,
+  IconCaretUpDownFilled,
+  IconMinimize,
+  IconMinus,
+  IconSearch,
+  IconWifi,
+  IconX,
+} from "@tabler/icons-react";
 import DynamicClock from "./DateTime";
 import Image from "next/image";
 
 const Header = () => {
+  const goFullscreen = () => {
+    const element = document.documentElement;
+
+    // Check for requestFullscreen, with browser prefixes for older versions
+    if (element.requestFullscreen) {
+      element.requestFullscreen();
+    }
+  };
+
   return (
     <header className="w-full h-[40px] rounded-b-lg relative">
       <div className="sticky inset-x-0 top-0 z-50 flex justify-between items-center pt-0 dark:bg-white bg-black">
         {/* Left side - Placeholder for MacBook icons */}
         <div className="hidden md:flex items-center space-x-2 px-4 py-1">
-          <div className="w-3 h-3 rounded-full bg-red-500" />
-          <div className="w-3 h-3 rounded-full bg-yellow-500" />
-          <div className="w-3 h-3 rounded-full bg-green-500" />
+          <div className="group flex items-center space-x-2">
+            <div className="w-4 h-4 rounded-full bg-red-500 cursor-pointer flex items-center justify-center">
+              <IconX className="text-black w-3 h-3 hidden group-hover:block" />
+            </div>
+            <div className="w-4 h-4 rounded-full bg-yellow-500 cursor-pointer flex items-center justify-center"><IconMinus className="text-black w-3 h-3 hidden group-hover:block"/></div>
+            <div
+              className="w-4 h-4 rounded-full bg-green-500 cursor-pointer flex items-center justify-center"
+              onClick={goFullscreen}
+            ><IconCaretUpDownFilled className="text-black w-3 h-3 hidden group-hover:block -rotate-45"/></div>
+          </div>
           &nbsp;&nbsp;&nbsp;
           <Link
             href="/"

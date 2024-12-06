@@ -2,6 +2,8 @@
 
 import { motion } from "framer-motion";
 import { Experience } from "./Experience";
+import { IconCaretUpDownFilled, IconMinus, IconX } from "@tabler/icons-react";
+import { useEffect, useState } from "react";
 
 interface FolderPopupProps {
   folder: string;
@@ -10,19 +12,41 @@ interface FolderPopupProps {
 
 const FolderPopup = ({ folder, closeFolder }: FolderPopupProps) => {
   // Define folder styles based on dark mode
-  // const folderStyles: React.CSSProperties = {
-  //   backgroundColor: "white",
-  //   color: "black",
-  // };
+  const [folderStyles, setFolderStyles] = useState<React.CSSProperties>({
+    maxWidth: "1280px",
+    maxHeight: "80%",
+  });
 
-  // // Check if dark mode is enabled
-  // if (
-  //   typeof window !== "undefined" &&
-  //   document.documentElement.classList.contains("dark")
-  // ) {
-  //   folderStyles.backgroundColor = "#333";
-  //   folderStyles.color = "white";
-  // }
+  const goFullscreen = () => {
+    setFolderStyles({
+      maxWidth: "100%",
+      maxHeight: "100%",
+      width: "100%",
+      height: "100%",
+      zIndex: "9999",
+      borderRadius: "0"
+    });
+  };
+
+  const resetSize = () => {
+    setFolderStyles({
+      maxWidth: "1280px",
+      maxHeight: "80%",
+    });
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        resetSize();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
 
   const getFolderContent = () => {
     switch (folder) {
@@ -47,7 +71,7 @@ const FolderPopup = ({ folder, closeFolder }: FolderPopupProps) => {
       case "about":
         return (
           <div>
-            <h2 className="text-xl font-bold">About Me</h2>
+            <h2 className="text-xl font-bold max-w-7xl">About Me</h2>
             <p>
               I am a full-stack web developer specializing in modern JavaScript
               frameworks like React, Next.js, and more.
@@ -103,20 +127,27 @@ const FolderPopup = ({ folder, closeFolder }: FolderPopupProps) => {
     }
   };
 
+
+
   return (
     <motion.div
       className="absolute z-40 mx-4 bg-white dark:bg-[#333] text-black dark:text-white transform -translate-y-1/2 rounded-xl shadow-lg max-w-7xl max-h-[80%] overflow-x-scroll"
-      // style={folderStyles} // Apply the dynamic styles here
+      style={folderStyles} // Apply the dynamic styles here
       initial={{ opacity: 0, scale: 0 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.3 }}
     >
       <div className="flex items-center gap-2 sticky top-0 bg-white dark:bg-[#333] text-black dark:text-white pt-2 pl-3 p-6 z-40">
-        <div className="flex items-center space-x-3">
-          <div onClick={closeFolder} className="w-3 h-3 rounded-full cursor-pointer bg-red-500" />
-          <div onClick={closeFolder} className="w-3 h-3 rounded-full cursor-pointer bg-yellow-500" />
-          <div className="w-3 h-3 rounded-full cursor-pointer bg-green-500" />
-        </div>
+      <div className="group flex items-center space-x-2">
+            <div className="w-4 h-4 rounded-full bg-red-500 cursor-pointer flex items-center justify-center" onClick={closeFolder}>
+              <IconX className="text-black w-3 h-3 hidden group-hover:block" />
+            </div>
+            <div className="w-4 h-4 rounded-full bg-yellow-500 cursor-pointer flex items-center justify-center" onClick={closeFolder}><IconMinus className="text-black w-3 h-3 hidden group-hover:block"/></div>
+            <div
+              className="w-4 h-4 rounded-full bg-green-500 cursor-pointer flex items-center justify-center"
+              onClick={goFullscreen}
+            ><IconCaretUpDownFilled className="text-black w-3 h-3 hidden group-hover:block -rotate-45"/></div>
+          </div>
         <h2 className="text-xl font-bold">
           {folder.charAt(0).toUpperCase() + folder.slice(1)}
         </h2>
