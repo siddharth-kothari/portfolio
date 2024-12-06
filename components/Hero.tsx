@@ -19,6 +19,7 @@ import {
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Introduction from "./Introduction";
+import { Meteors } from "./ui/meteor-shower";
 
 
 const Hero = () => {
@@ -33,7 +34,7 @@ const Hero = () => {
     {
       title: "Home",
       icon: (
-        <IconHome className="h-full w-full text-white" />
+        <IconHome className="h-full w-full md:text-white dark:text-white text-black" />
       ),
       color: "bg-gradient-to-r from-[#4e9af1] to-[#3b74cb]",
       onclick: closeFolder,
@@ -42,7 +43,7 @@ const Hero = () => {
     {
       title: "About",
       icon: (
-        <IconUser className="h-full w-full text-white" />
+        <IconUser className="h-full w-full md:text-white dark:text-white text-black" />
       ),   
       color: "bg-gradient-to-r from-[#6a82fb] to-[#fc5c7d]",
       onclick: () => openSpecificFolder('about'),
@@ -51,7 +52,7 @@ const Hero = () => {
     {
       title: "Services",
       icon: (
-        <IconSettings className="h-full w-full text-white" />
+        <IconSettings className="h-full w-full md:text-white dark:text-white text-black" />
       ),   
       color: "bg-gradient-to-r from-[#56ccf2] to-[#6e7ff3]",
       onclick: () => openSpecificFolder('services'),
@@ -60,7 +61,7 @@ const Hero = () => {
     {
       title: "Skills",
       icon: (
-        <IconTools className="h-full w-full text-white" />
+        <IconTools className="h-full w-full md:text-white dark:text-white text-black" />
       ),
       color: "bg-gradient-to-r from-[#ff6a00] to-[#ee0979]",
       onclick: () => openSpecificFolder('skills'),
@@ -69,7 +70,7 @@ const Hero = () => {
     {
       title: "Projects",
       icon: (
-        <IconCode className="h-full w-full text-white" />
+        <IconCode className="h-full w-full md:text-white dark:text-white text-black" />
       ),
       color:"bg-gradient-to-r from-[#ff7e5f] to-[#feb47b]",
       onclick: () => openSpecificFolder('projects'),
@@ -78,7 +79,7 @@ const Hero = () => {
     {
       title: "Contact",
       icon: (
-        <IconMessageCircleFilled className="h-full w-full text-white" />
+        <IconMessageCircleFilled className="h-full w-full md:text-white dark:text-white text-black" />
       ),
       color: 'bg-gradient-to-r from-[#34d399] to-[#10b981]',
       onclick: () => openSpecificFolder('contact'),
@@ -86,7 +87,7 @@ const Hero = () => {
   ];
 
   return (
-    <section className="relative h-screen flex flex-col items-center justify-center text-white bg-gray-900">
+    <section className="relative h-screen flex flex-col items-center justify-center text-white bg-gray-900 overflow-hidden">
       <div className="absolute top-0 w-full">
         <Header />
       </div>
@@ -105,13 +106,14 @@ const Hero = () => {
       {openFolder && (
         <FolderPopup folder={openFolder} closeFolder={closeFolder} />
       )}
-      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 py-4 px-8">
+      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 py-4 px-8 z-50">
         <div className="flex items-center justify-center w-full">
           <FloatingDock
             items={links}
           />
         </div>
       </div>
+      <Meteors number={25} />
     </section>
   );
 };

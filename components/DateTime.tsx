@@ -28,7 +28,7 @@ const DynamicClock = () => {
     return () => clearInterval(interval); // Cleanup on unmount
   }, []);
 
-  return <div className="text-white dark:text-black text-sm">{dateTime}</div>;
+  return <div className="text-white dark:text-black text-sm hidden md:block">{dateTime}</div>;
 };
 
 export default DynamicClock;

@@ -9,19 +9,19 @@ interface FolderPopupProps {
 
 const FolderPopup = ({ folder, closeFolder }: FolderPopupProps) => {
   // Define folder styles based on dark mode
-  const folderStyles: React.CSSProperties = {
-    backgroundColor: "white",
-    color: "black",
-  };
+  // const folderStyles: React.CSSProperties = {
+  //   backgroundColor: "white",
+  //   color: "black",
+  // };
 
-  // Check if dark mode is enabled
-  if (
-    typeof window !== "undefined" &&
-    document.documentElement.classList.contains("dark")
-  ) {
-    folderStyles.backgroundColor = "#333";
-    folderStyles.color = "white";
-  }
+  // // Check if dark mode is enabled
+  // if (
+  //   typeof window !== "undefined" &&
+  //   document.documentElement.classList.contains("dark")
+  // ) {
+  //   folderStyles.backgroundColor = "#333";
+  //   folderStyles.color = "white";
+  // }
 
   const getFolderContent = () => {
     switch (folder) {
@@ -100,8 +100,8 @@ const FolderPopup = ({ folder, closeFolder }: FolderPopupProps) => {
 
   return (
     <motion.div
-      className="absolute  transform -translate-y-1/2 pt-2 pl-3 p-6 rounded-xl shadow-lg max-w-7xl overflow-x-scroll"
-      style={folderStyles} // Apply the dynamic styles here
+      className="absolute z-40 mx-4 bg-white dark:bg-[#333] text-black dark:text-white transform -translate-y-1/2 pt-2 pl-3 p-6 rounded-xl shadow-lg max-w-7xl overflow-x-scroll"
+      // style={folderStyles} // Apply the dynamic styles here
       initial={{ opacity: 0, scale: 0 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.3 }}

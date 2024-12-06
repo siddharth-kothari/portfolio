@@ -41,7 +41,7 @@ const FloatingDockMobile = ({
         {open && (
           <motion.div
             layoutId="nav"
-            className="absolute bottom-0 mb-2 inset-x-0 flex flex-col gap-2"
+            className="absolute bottom-10 mb-2 inset-x-0 flex flex-col gap-2"
           >
             {items.map((item, idx) => (
               <motion.div
@@ -64,7 +64,7 @@ const FloatingDockMobile = ({
                   onClick={item.onclick}
                   className="h-10 w-10 rounded-full bg-gray-50 dark:bg-neutral-900 flex items-center justify-center"
                 >
-                  <div className="h-4 w-4">{item.icon}</div>
+                  <div className="h-4 w-4 ">{item.icon}</div>
                 </button>
               </motion.div>
             ))}
@@ -75,7 +75,7 @@ const FloatingDockMobile = ({
         onClick={() => setOpen(!open)}
         className="h-10 w-10 rounded-full bg-gray-50 dark:bg-neutral-800 flex items-center justify-center"
       >
-        <IconLayoutNavbarCollapse className="h-5 w-5 text-neutral-500 dark:text-neutral-400" />
+        <IconLayoutNavbarCollapse className="h-5 w-5 dark:text-white text-black" />
       </button>
     </div>
   );
