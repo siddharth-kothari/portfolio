@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Experience } from "./Experience";
 
 interface FolderPopupProps {
   folder: string;
@@ -93,6 +94,10 @@ const FolderPopup = ({ folder, closeFolder }: FolderPopupProps) => {
             </form>
           </div>
         );
+      case "experience":
+        return (
+          <Experience />
+        )
       default:
         return null;
     }
@@ -100,13 +105,13 @@ const FolderPopup = ({ folder, closeFolder }: FolderPopupProps) => {
 
   return (
     <motion.div
-      className="absolute z-40 mx-4 bg-white dark:bg-[#333] text-black dark:text-white transform -translate-y-1/2 pt-2 pl-3 p-6 rounded-xl shadow-lg max-w-7xl overflow-x-scroll"
+      className="absolute z-40 mx-4 bg-white dark:bg-[#333] text-black dark:text-white transform -translate-y-1/2 rounded-xl shadow-lg max-w-7xl max-h-[80%] overflow-x-scroll"
       // style={folderStyles} // Apply the dynamic styles here
       initial={{ opacity: 0, scale: 0 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.3 }}
     >
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2 sticky top-0 bg-white dark:bg-[#333] text-black dark:text-white pt-2 pl-3 p-6 z-40">
         <div className="flex items-center space-x-3">
           <div onClick={closeFolder} className="w-3 h-3 rounded-full cursor-pointer bg-red-500" />
           <div onClick={closeFolder} className="w-3 h-3 rounded-full cursor-pointer bg-yellow-500" />
@@ -117,7 +122,7 @@ const FolderPopup = ({ folder, closeFolder }: FolderPopupProps) => {
         </h2>
         
       </div>
-      <div className="mt-4">{getFolderContent()}</div>
+      <div className="mt-4 pt-2 pl-3 p-6">{getFolderContent()}</div>
     </motion.div>
   );
 };
