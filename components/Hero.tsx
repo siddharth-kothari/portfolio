@@ -10,11 +10,10 @@ import {
   IconUser,
   IconHome,
   IconMessageCircleFilled,
-  IconNewSection,
-  IconTerminal2,
   IconCode,
   IconTools,
   IconSettings,
+  IconBriefcaseFilled,
 } from "@tabler/icons-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -56,6 +55,15 @@ const Hero = () => {
       ),   
       color: "bg-gradient-to-r from-[#56ccf2] to-[#6e7ff3]",
       onclick: () => openSpecificFolder('services'),
+    },
+    {
+
+      title: "Experience",
+      icon: (
+        <IconBriefcaseFilled className="h-full w-full md:text-white dark:text-white text-black" />
+      ),   
+      color: "bg-gradient-to-r from-[#ff9966] to-[#ff5e62]",
+      onclick: () => openSpecificFolder('experience'),
     },
 
     {
