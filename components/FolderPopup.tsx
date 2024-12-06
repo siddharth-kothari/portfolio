@@ -5,6 +5,7 @@ import { Experience } from "./Experience";
 import { IconCaretUpDownFilled, IconMinus, IconX } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
 import About from "./About";
+import Projects from "./Projects";
 
 interface FolderPopupProps {
   folder: string;
@@ -53,21 +54,7 @@ const FolderPopup = ({ folder, closeFolder }: FolderPopupProps) => {
     switch (folder) {
       case "projects":
         return (
-          <div>
-            <h2 className="text-xl font-bold">My Projects</h2>
-            <ul>
-              <li>
-                <a href="#project1" className="text-blue-600 hover:underline">
-                  Project 1
-                </a>
-              </li>
-              <li>
-                <a href="#project2" className="text-blue-600 hover:underline">
-                  Project 2
-                </a>
-              </li>
-            </ul>
-          </div>
+          <Projects />
         );
       case "about":
         return (
