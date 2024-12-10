@@ -25,7 +25,7 @@ const Projects = () => {
       image: "/cartify.png",
       title: "Cartify",
       description:
-        "A fully functional e-commerce platform built using Next.js, next-auth and tailwindcss , featuring user authentication, product management, and a secure payment gateway. ",
+        "A fully functional e-commerce platform built using Next.js, next-auth and tailwindcss , featuring user authentication, product management, and a secure payment gateway.",
       techUsed: ["Next.js", "TypeScript", "Tailwind CSS"],
       date: "January 2024",
       link: "https://cartify.siddharthkothari.com/",
@@ -43,29 +43,19 @@ const Projects = () => {
   ];
 
   return (
-    <div className="max-w-7xl">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 className="text-3xl text-center font-bold mb-3">Featured Projects</h2>
       <p className="max-w-3xl text-center mb-20 mx-auto">
         Explore my dynamic web solutions crafted with React.js and Laravel,
         showcasing seamless user experiences and robust functionalities.
       </p>
-      <div className="">
-        <p className="tracking-widest uppercase font-extralight">
-          Featured Projects
-        </p>
-        <h2 className="text-3xl font-bold my-3">Explore My Work</h2>
-        <p className="tracking-wide font-extralight">
-          Discover the projects I’ve developed, showcasing my skills in web
-          development and design.{" "}
-        </p>
-        <hr className="my-10 border-t border-gray-300 dark:border-gray-600" />
+      <div>
         {projects.map((project, index) => (
           <div key={index}>
             <ProjectCard
               project={project}
               isImageLeft={index % 2 === 0} // Alternate layout
             />
-            {/* Add an <hr> tag after each project except the last one */}
             {index < projects.length - 1 && (
               <hr className="my-10 border-t border-gray-300 dark:border-gray-600" />
             )}
