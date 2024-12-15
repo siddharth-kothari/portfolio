@@ -39,11 +39,11 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
       className="w-full bg-transparent font-sans md:px-10"
       ref={containerRef}
     >
-      <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-10">
-        <h2 className="text-lg md:text-4xl mb-4 text-black dark:text-white max-w-4xl">
+      <div className="max-w-7xl mx-auto text-center">
+        <h2 className="text-lg md:text-4xl mb-4 text-black dark:text-white max-w-4xl mx-auto">
           My Professional journey
         </h2>
-        <p className="text-neutral-700 dark:text-neutral-300 text-sm md:text-base max-w-sm">
+        <p className="text-neutral-700 dark:text-neutral-300 text-sm md:text-base max-w-lg mx-auto">
           Explore the key milestones of my career and how each experience has shaped my journey as a developer.
         </p>
       </div>

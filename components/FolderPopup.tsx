@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import About from "./About";
 import Projects from "./Projects";
 import Skills from "./Skills";
+import Contact from "./Contact";
 
 interface FolderPopupProps {
   folder: string;
@@ -67,33 +68,13 @@ const FolderPopup = ({ folder, closeFolder }: FolderPopupProps) => {
         );
       case "contact":
         return (
-          <div>
-            <h2 className="text-xl font-bold">Contact</h2>
-            <form>
-              <input
-                type="text"
-                placeholder="Name"
-                className="p-2 mt-2 w-full"
-              />
-              <input
-                type="email"
-                placeholder="Email"
-                className="p-2 mt-2 w-full"
-              />
-              <textarea
-                placeholder="Message"
-                className="p-2 mt-2 w-full"
-              ></textarea>
-              <button
-                type="submit"
-                className="mt-4 bg-blue-500 text-white py-2 px-4 rounded"
-              >
-                Send Message
-              </button>
-            </form>
-          </div>
+          <Contact />
         );
       case "experience":
+        return (
+          <Experience />
+        )
+      case "services":
         return (
           <Experience />
         )
@@ -112,7 +93,7 @@ const FolderPopup = ({ folder, closeFolder }: FolderPopupProps) => {
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.3 }}
     >
-      <div className="flex items-center gap-2 sticky top-0 bg-white dark:bg-[#333] text-black dark:text-white pt-2 pl-3 p-6 z-40">
+      <div className="flex items-center gap-2 sticky top-0 bg-white dark:bg-[#333] text-black dark:text-white pt-2 py-3 p-6 z-40">
       <div className="group flex items-center space-x-2">
             <div className="w-4 h-4 rounded-full bg-red-500 cursor-pointer flex items-center justify-center" onClick={closeFolder}>
               <IconX className="text-black w-3 h-3 hidden group-hover:block" />
@@ -128,7 +109,7 @@ const FolderPopup = ({ folder, closeFolder }: FolderPopupProps) => {
         </h2>
         
       </div>
-      <div className="mt-4 pt-2 pl-3 p-6">{getFolderContent()}</div>
+      <div className="mt-4 pt-2 py-3 p-6">{getFolderContent()}</div>
     </motion.div>
   );
 };
