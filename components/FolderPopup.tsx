@@ -6,6 +6,7 @@ import { IconCaretUpDownFilled, IconMinus, IconX } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
 import About from "./About";
 import Projects from "./Projects";
+import Skills from "./Skills";
 
 interface FolderPopupProps {
   folder: string;
@@ -62,15 +63,7 @@ const FolderPopup = ({ folder, closeFolder }: FolderPopupProps) => {
         );
       case "skills":
         return (
-          <div>
-            <h2 className="text-xl font-bold">Skills</h2>
-            <ul>
-              <li>JavaScript</li>
-              <li>React</li>
-              <li>Next.js</li>
-              <li>Tailwind CSS</li>
-            </ul>
-          </div>
+          <Skills />
         );
       case "contact":
         return (
