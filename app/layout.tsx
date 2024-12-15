@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
+const isProduction = process.env.NODE_ENV === 'production';
+
 export const metadata: Metadata = {
   title: process.env.NEXT_SITE_TITLE,
   description: process.env.NEXT_SITE_DESCRIPTION,
@@ -26,13 +28,13 @@ export const metadata: Metadata = {
     images: ['/logo.png'], // Must be an absolute URL
   },
   robots: {
-    index: process.env.NODE_ENV === 'production' ? true : false, // Allow indexing by all bots
-    follow: process.env.NODE_ENV === 'production' ? true : false, // Allow following links
-    nocache: process.env.NODE_ENV === 'production' ? false : false,
+    index: isProduction, // Allow indexing in production
+    follow: isProduction, // Allow following links in production
+    nocache: !isProduction, // Cache only in production
     googleBot: {
-      index: process.env.NODE_ENV === 'production' ? true : false,
-      follow: process.env.NODE_ENV === 'production' ? true : false,
-      noimageindex: process.env.NODE_ENV === 'production' ? true : false,
+      index: isProduction,
+      follow: isProduction,
+      noimageindex: !isProduction, // Prevent image indexing in non-production environments
     },
   },
   
