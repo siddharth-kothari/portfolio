@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { Experience } from "./Experience";
 import { IconCaretUpDownFilled, IconMinus, IconX } from "@tabler/icons-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import About from "./About";
 import Projects from "./Projects";
 import Skills from "./Skills";
@@ -21,6 +21,8 @@ const FolderPopup = ({ folder, closeFolder }: FolderPopupProps) => {
     maxHeight: "80%",
   });
 
+  const popupRef = useRef<HTMLDivElement>(null); // Ref to track the popup
+
   const goFullscreen = () => {
     setFolderStyles({
       maxWidth: "100%",
@@ -28,7 +30,7 @@ const FolderPopup = ({ folder, closeFolder }: FolderPopupProps) => {
       width: "100%",
       height: "100%",
       zIndex: "9999",
-      borderRadius: "0"
+      borderRadius: "0",
     });
   };
 
@@ -39,51 +41,55 @@ const FolderPopup = ({ folder, closeFolder }: FolderPopupProps) => {
     });
   };
 
+
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
-        resetSize();
+        closeFolder();
       }
     };
 
+    const handleOutsideClick = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+
+      // Ignore clicks on elements with the "data-ignore-outside-click" attribute
+      if (target.closest("[data-ignore-outside-click]")) {
+        return;
+      }
+
+      if (popupRef.current && !popupRef.current.contains(target)) {
+        closeFolder();
+      }
+    };
+
+    // Add event listener for clicks outside and keydown
     window.addEventListener("keydown", handleKeyDown);
+    document.addEventListener("mousedown", handleOutsideClick);
+
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener("mousedown", handleOutsideClick);
     };
   }, []);
 
   const getFolderContent = () => {
     switch (folder) {
       case "projects":
-        return (
-          <Projects />
-        );
+        return <Projects />;
       case "about":
-        return (
-          <About />
-        );
+        return <About />;
       case "skills":
-        return (
-          <Skills />
-        );
+        return <Skills />;
       case "contact":
-        return (
-          <Contact />
-        );
+        return <Contact />;
       case "experience":
-        return (
-          <Experience />
-        )
+        return <Experience />;
       case "services":
-        return (
-          <Experience />
-        )
+        return <Experience />;
       default:
         return null;
     }
   };
-
-
 
   return (
     <motion.div
@@ -91,23 +97,34 @@ const FolderPopup = ({ folder, closeFolder }: FolderPopupProps) => {
       style={folderStyles} // Apply the dynamic styles here
       initial={{ opacity: 0, scale: 0 }}
       animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.3 }}
+      exit={{ opacity: 0, scale: 0 }} // Smooth closing animation
+      transition={{ duration: 0.3 }} // Duration for both opening and closing
+      ref={popupRef} // Attach the ref to the popup
     >
       <div className="flex items-center gap-2 sticky top-0 bg-white dark:bg-[#333] text-black dark:text-white pt-2 py-3 p-6 z-40">
-      <div className="group flex items-center space-x-2">
-            <div className="w-4 h-4 rounded-full bg-red-500 cursor-pointer flex items-center justify-center" onClick={closeFolder}>
-              <IconX className="text-black w-3 h-3 hidden group-hover:block" />
-            </div>
-            <div className="w-4 h-4 rounded-full bg-yellow-500 cursor-pointer flex items-center justify-center" onClick={closeFolder}><IconMinus className="text-black w-3 h-3 hidden group-hover:block"/></div>
-            <div
-              className="w-4 h-4 rounded-full bg-green-500 cursor-pointer flex items-center justify-center"
-              onClick={goFullscreen}
-            ><IconCaretUpDownFilled className="text-black w-3 h-3 hidden group-hover:block -rotate-45"/></div>
+        <div className="group flex items-center space-x-2">
+          <div
+            className="w-4 h-4 rounded-full bg-red-500 cursor-pointer flex items-center justify-center"
+            onClick={closeFolder}
+          >
+            <IconX className="text-black w-3 h-3 hidden group-hover:block" />
           </div>
+          <div
+            className="w-4 h-4 rounded-full bg-yellow-500 cursor-pointer flex items-center justify-center"
+            onClick={closeFolder}
+          >
+            <IconMinus className="text-black w-3 h-3 hidden group-hover:block" />
+          </div>
+          <div
+            className="w-4 h-4 rounded-full bg-green-500 cursor-pointer flex items-center justify-center"
+            onClick={goFullscreen}
+          >
+            <IconCaretUpDownFilled className="text-black w-3 h-3 hidden group-hover:block -rotate-45" />
+          </div>
+        </div>
         <h2 className="text-xl font-bold">
           {folder.charAt(0).toUpperCase() + folder.slice(1)}
         </h2>
-        
       </div>
       <div className="mt-4 pt-2 py-3 p-6">{getFolderContent()}</div>
     </motion.div>

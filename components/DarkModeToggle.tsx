@@ -1,5 +1,6 @@
 "use client";
 
+import { IconMoonFilled, IconSunFilled } from '@tabler/icons-react';
 import { useEffect, useState } from 'react';
 
 const DarkModeToggle = () => {
@@ -32,8 +33,8 @@ const DarkModeToggle = () => {
   }, []);
 
   return (
-    <button onClick={toggleDarkMode} className="py-2">
-      {isDarkMode ? '🌞' : '🌙'}
+    <button data-ignore-outside-click onClick={toggleDarkMode} className="py-2">
+      {isDarkMode ? <IconSunFilled /> : <IconMoonFilled className='text-black'/>}
     </button>
   );
 };

@@ -1,5 +1,7 @@
+"use client";
+
 import { cn } from "@/lib/utils";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 export const Meteors = ({
   number,
@@ -8,10 +10,24 @@ export const Meteors = ({
   number?: number;
   className?: string;
 }) => {
-  const meteors = new Array(number || 20).fill(true);
+  const [randomStyles, setRandomStyles] = useState<
+    { top: string; left: string; animationDelay: string; animationDuration: string }[]
+  >([]);
+
+  useEffect(() => {
+    // Generate random styles on the client side
+    const styles = new Array(number || 20).fill(true).map(() => ({
+      top: Math.floor(Math.random() * 50) + "%",
+      left: Math.floor(Math.random() * 50) + "%",
+      animationDelay: (Math.random() * (0.8 - 0.2) + 0.2).toFixed(2) + "s",
+      animationDuration: Math.floor(Math.random() * (10 - 2) + 2) + "s",
+    }));
+    setRandomStyles(styles);
+  }, [number]);
+
   return (
     <>
-      {meteors.map((el, idx) => (
+      {randomStyles.map((style, idx) => (
         <span
           key={"meteor" + idx}
           className={cn(
@@ -19,12 +35,7 @@ export const Meteors = ({
             "before:content-[''] before:absolute before:top-1/2 before:transform before:-translate-y-[50%] before:w-[50px] before:h-[1px] before:bg-gradient-to-r before:from-[#64748b] before:to-transparent",
             className
           )}
-          style={{
-            top: Math.floor(Math.random() * 50) + "%",
-            left: Math.floor(Math.random() * 50) + "%",
-            animationDelay: Math.random() * (0.8 - 0.2) + 0.2 + "s",
-            animationDuration: Math.floor(Math.random() * (10 - 2) + 2) + "s",
-          }}
+          style={style}
         ></span>
       ))}
     </>

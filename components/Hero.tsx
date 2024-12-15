@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import FolderPopup from "@/components/FolderPopup";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import Header from "./Header";
 import { FloatingDock } from "@/components/ui/floating-dock";
@@ -17,7 +17,6 @@ import {
 } from "@tabler/icons-react";
 import Introduction from "./Introduction";
 import { Meteors } from "./ui/meteor-shower";
-
 
 const Hero = () => {
   const [openFolder, setOpenFolder] = useState<string | null>(null);
@@ -39,27 +38,25 @@ const Hero = () => {
       title: "About",
       icon: (
         <IconUser className="h-full w-full md:text-white dark:text-white text-black" />
-      ),   
+      ),
       color: "bg-gradient-to-r from-[#6a82fb] to-[#fc5c7d]",
-      onclick: () => openSpecificFolder('about'),
+      onclick: () => openSpecificFolder("about"),
     },
-
+    // {
+    //   title: "Services",
+    //   icon: (
+    //     <IconSettings className="h-full w-full md:text-white dark:text-white text-black" />
+    //   ),
+    //   color: "bg-gradient-to-r from-[#56ccf2] to-[#6e7ff3]",
+    //   onclick: () => openSpecificFolder("services"),
+    // },
     {
-      title: "Services",
-      icon: (
-        <IconSettings className="h-full w-full md:text-white dark:text-white text-black" />
-      ),   
-      color: "bg-gradient-to-r from-[#56ccf2] to-[#6e7ff3]",
-      onclick: () => openSpecificFolder('services'),
-    },
-    {
-
       title: "Experience",
       icon: (
         <IconBriefcaseFilled className="h-full w-full md:text-white dark:text-white text-black" />
-      ),   
+      ),
       color: "bg-gradient-to-r from-[#ff9966] to-[#ff5e62]",
-      onclick: () => openSpecificFolder('experience'),
+      onclick: () => openSpecificFolder("experience"),
     },
 
     {
@@ -68,7 +65,7 @@ const Hero = () => {
         <IconTools className="h-full w-full md:text-white dark:text-white text-black" />
       ),
       color: "bg-gradient-to-r from-[#ff6a00] to-[#ee0979]",
-      onclick: () => openSpecificFolder('skills'),
+      onclick: () => openSpecificFolder("skills"),
     },
 
     {
@@ -76,8 +73,8 @@ const Hero = () => {
       icon: (
         <IconCode className="h-full w-full md:text-white dark:text-white text-black" />
       ),
-      color:"bg-gradient-to-r from-[#ff7e5f] to-[#feb47b]",
-      onclick: () => openSpecificFolder('projects'),
+      color: "bg-gradient-to-r from-[#ff7e5f] to-[#feb47b]",
+      onclick: () => openSpecificFolder("projects"),
     },
 
     {
@@ -85,8 +82,8 @@ const Hero = () => {
       icon: (
         <IconMessageCircleFilled className="h-full w-full md:text-white dark:text-white text-black" />
       ),
-      color: 'bg-gradient-to-r from-[#34d399] to-[#10b981]',
-      onclick: () => openSpecificFolder('contact'),
+      color: "bg-gradient-to-r from-[#34d399] to-[#10b981]",
+      onclick: () => openSpecificFolder("contact"),
     },
   ];
 
@@ -107,17 +104,17 @@ const Hero = () => {
         <Introduction />
       </div>
 
-      {openFolder && (
-        <FolderPopup folder={openFolder} closeFolder={closeFolder} />
-      )}
+      <AnimatePresence>
+        {openFolder && (
+          <FolderPopup folder={openFolder} closeFolder={closeFolder} />
+        )}
+      </AnimatePresence>
       <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 py-4 px-8 z-50">
         <div className="flex items-center justify-center w-full">
-          <FloatingDock
-            items={links}
-          />
+          <FloatingDock items={links} />
         </div>
       </div>
-      <Meteors number={25} />
+      <Meteors number={20} />
     </section>
   );
 };

@@ -1,4 +1,5 @@
-// components/Introduction.tsx
+"use client"
+
 const Introduction = () => {
     return (
       <section className="flex flex-col items-center justify-center text-center p-4">
