@@ -27,7 +27,7 @@ const Header = () => {
 
   return (
     <header className="w-full h-[40px] rounded-b-lg relative">
-      <div className="sticky inset-x-0 top-0 z-50 flex justify-between items-center pt-0 dark:bg-white bg-black">
+      <div className="sticky inset-x-0 top-0 z-50 flex justify-between items-center pt-0 dark:bg-black bg-white">
         {/* Left side - Placeholder for MacBook icons */}
         <div className="hidden md:flex items-center space-x-2 px-4 py-1">
           <div className="group flex items-center space-x-2">
@@ -43,7 +43,7 @@ const Header = () => {
           &nbsp;&nbsp;&nbsp;
           <Link
             href="/"
-            className="text-lg text-bold text-white dark:text-black"
+            className="text-lg text-bold dark:text-white text-black"
           >
             Siddharth Kothari
           </Link>
@@ -58,19 +58,19 @@ const Header = () => {
           />
         </Link>
 
-        <div className="w-20 md:w-40 h-[35px] bg-white dark:bg-black rounded-b-lg absolute top-0 left-1/2 transform -translate-x-1/2"></div>
+        <div className="w-20 md:w-40 h-[35px] dark:bg-white bg-black rounded-b-lg absolute top-0 left-1/2 transform -translate-x-1/2"></div>
 
         {/* Right side - Placeholder for icons like WiFi, battery */}
         <div className="flex items-center space-x-2 md:space-x-4 px-4 py-1">
-          <span className="text-white dark:text-black flex items-center space-x-1">
+          <span className="dark:text-white text-black flex items-center space-x-1">
             <p className="text-xs m-0">100%</p>
             <IconBatteryFilled className="w-5 h-5" />
           </span>
 
-          <span className="text-white dark:text-black">
+          <span className="dark:text-white text-black">
             <IconWifi className="w-5 h-5" />
           </span>
-          <span className="hidden md:block text-white dark:text-black">
+          <span className="hidden md:block dark:text-white text-black">
             <IconSearch className="w-5 h-5" />
           </span>
           <DynamicClock />
