@@ -15,7 +15,6 @@ import {
   IconSettings,
   IconBriefcaseFilled,
 } from "@tabler/icons-react";
-import { useRouter } from "next/navigation";
 import Introduction from "./Introduction";
 import { Meteors } from "./ui/meteor-shower";
 
@@ -25,8 +24,6 @@ const Hero = () => {
 
   const openSpecificFolder = (folderName: string) => setOpenFolder(folderName);
   const closeFolder = () => setOpenFolder(null);
-
-  const router = useRouter();
 
   const links = [
     {
@@ -94,7 +91,7 @@ const Hero = () => {
   ];
 
   return (
-    <section className="relative h-screen flex flex-col items-center justify-center text-white bg-gray-900 overflow-hidden">
+    <section className="relative h-dvh flex flex-col items-center justify-center text-white bg-gray-900 overflow-hidden">
       <div className="absolute top-0 w-full">
         <Header />
       </div>
