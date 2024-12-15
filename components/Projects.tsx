@@ -1,10 +1,18 @@
+"use client";
+
 import React from "react";
 import { ProjectCard } from "./ui/project-card";
+import {
+  cartify,
+  dental_care_solutions,
+  facing_east_studios,
+  glam2door,
+} from "@/assets";
 
 const Projects = () => {
   const projects = [
     {
-      image: "/facing_east_studios.png",
+      image: facing_east_studios,
       title: "Facing East Studios",
       description:
         "Currently working on a website for a brand offering services in brand identity, label design, ad campaigns, and digital marketing. The project focuses on presenting their creative solutions in a compelling and user-friendly way.",
@@ -13,7 +21,7 @@ const Projects = () => {
       link: "#",
     },
     {
-      image: "/dental_care_solutions.png",
+      image: dental_care_solutions,
       title: "Dental Care Solutions",
       description:
         "Developed a website for a dental clinic in Pune, highlighting their treatments and community outreach efforts for underprivileged children. The site focuses on both their services and social impact, offering an engaging and informative experience.",
@@ -22,7 +30,7 @@ const Projects = () => {
       link: "https://dental-care-solutions.in/",
     },
     {
-      image: "/cartify.png",
+      image: cartify,
       title: "Cartify",
       description:
         "A fully functional e-commerce platform built using Next.js, next-auth and tailwindcss , featuring user authentication, product management, and a secure payment gateway.",
@@ -31,7 +39,7 @@ const Projects = () => {
       link: "https://cartify.siddharthkothari.com/",
     },
     {
-      image: "/glam2door.png",
+      image: glam2door,
       title: "Glam2door - Salon at Home",
       description:
         "Developed a sleek and user-friendly website for Glam2Door, a salon-at-home services business. The platform showcases services and allows users to easily book appointments online.",

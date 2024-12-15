@@ -1,12 +1,14 @@
 "use client";
+
 import { motion } from "framer-motion";
 import { IconExternalLink } from "@tabler/icons-react";
 import Link from "next/link";
 import React from "react";
+import Image, { StaticImageData } from "next/image";
 
 interface ProjectCardProps {
   project: {
-    image: string;
+    image: StaticImageData;
     title: string;
     description: string;
     techUsed: string[];
@@ -36,10 +38,11 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, isImageLeft }
         exit={{ x: isImageLeft ? -50 : 50, opacity: 0 }}
         transition={{ duration: 0.8, ease: "easeInOut" }}
       >
-        <img
+        <Image
           src={project.image}
           alt={project.title}
           className="rounded-lg shadow-lg object-cover w-full h-64 md:h-80"
+          loading="lazy"
         />
       </motion.div>
 

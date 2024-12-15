@@ -15,7 +15,6 @@ import {
   IconSettings,
   IconBriefcaseFilled,
 } from "@tabler/icons-react";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Introduction from "./Introduction";
 import { Meteors } from "./ui/meteor-shower";
