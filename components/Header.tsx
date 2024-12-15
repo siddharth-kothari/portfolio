@@ -50,7 +50,7 @@ const Header = () => {
         </div>
         <Link href="/" className="block md:hidden">
           <Image
-            src="/logo1.png"
+            src="/logo.png"
             alt="logo"
             width={50}
             height={50}
