@@ -2,7 +2,8 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 const isProduction = process.env.NODE_ENV === 'production';
-
+console.log('env', process.env.NODE_ENV);
+console.log(isProduction);
 export const metadata: Metadata = {
   title: process.env.NEXT_SITE_TITLE,
   description: process.env.NEXT_SITE_DESCRIPTION,
