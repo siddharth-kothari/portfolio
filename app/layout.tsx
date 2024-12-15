@@ -1,8 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
-const isProduction = process.env.NODE_ENV === 'production';
-console.log('env', process.env.NODE_ENV);
+const isProduction = process.env.NEXT_ENV === 'production';
+console.log('env', process.env.NEXT_ENV);
 console.log(isProduction);
 export const metadata: Metadata = {
   title: process.env.NEXT_SITE_TITLE,
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   robots: {
     index: isProduction, // Allow indexing in production
     follow: isProduction, // Allow following links in production
-    nocache: !isProduction, // Cache only in production
+    nocache: isProduction, // Cache only in production
     googleBot: {
       index: isProduction,
       follow: isProduction,
