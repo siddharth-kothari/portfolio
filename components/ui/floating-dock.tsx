@@ -62,42 +62,52 @@ const FloatingDockMobile = ({
         {open && (
           <motion.div
             layoutId="nav"
-            className="absolute bottom-12 mb-2 inset-x-0 flex flex-col gap-2"
+            className="absolute bottom-20 inset-x-0 flex items-center justify-center dark:text-white"
           >
-            {items.map((item, idx) => (
-              <motion.div
-                key={item.title}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                exit={{
-                  opacity: 0,
-                  y: 10,
-                  transition: {
-                    delay: idx * 0.05,
-                  },
-                }}
-                transition={{ delay: (items.length - 1 - idx) * 0.05 }}
-              >
-                <button
-                  onClick={() => {
-                    item.onclick();
-                    setOpen(false); // Close the dock when an item is clicked
+            {items.map((item, idx) => {
+              // Adjust the radius for closer spacing and calculate the angle for each item
+              const radius = 90; // Reduced the radius for closer spacing
+              const angle = Math.PI + (Math.PI / (items.length - 1)) * idx; // Semicircle above
+              const x = Math.cos(angle) * radius; // Horizontal position
+              const y = Math.sin(angle) * radius; // Vertical position
+
+              return (
+                <motion.div
+                  key={item.title}
+                  initial={{ opacity: 0, x: 0, y: 0 }}
+                  animate={{
+                    opacity: 1,
+                    x,
+                    y,
                   }}
-                  className="h-12 w-12 rounded-full bg-gray-50 dark:bg-neutral-900 flex items-center justify-center"
+                  exit={{
+                    opacity: 0,
+                    x: 0,
+                    y: 0,
+                  }}
+                  transition={{
+                    delay: idx * 0.05, // Icons animate in correct sequential order
+                  }}
+                  className="absolute"
                 >
-                  <div className="h-6 w-6">{item.icon}</div>
-                </button>
-              </motion.div>
-            ))}
+                  <button
+                    onClick={() => {
+                      item.onclick();
+                      setOpen(false); // Close the dock when an item is clicked
+                    }}
+                    className={`h-12 w-12 rounded-full flex items-center justify-center dark:text-white ${item.color}`}
+                  >
+                    <div className="h-6 w-6 dark:text-white">{item.icon}</div>
+                  </button>
+                </motion.div>
+              );
+            })}
           </motion.div>
         )}
       </AnimatePresence>
       <button
         onClick={() => setOpen(!open)}
-        className="h-12 w-12 rounded-full bg-gray-50 dark:bg-neutral-800 flex items-center justify-center"
+        className="h-12 w-12 rounded-full bg-gray-50 dark:bg-neutral-800 flex items-center justify-center relative"
       >
         <IconLayoutNavbarCollapse className="h-6 w-6 dark:text-white text-black" />
       </button>

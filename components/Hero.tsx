@@ -28,7 +28,7 @@ const Hero = () => {
     {
       title: "Home",
       icon: (
-        <IconHome className="h-full w-full md:text-white dark:text-white text-black" />
+        <IconHome className="h-full w-full text-white" />
       ),
       color: "bg-gradient-to-r from-[#4e9af1] to-[#3b74cb]",
       onclick: closeFolder,
@@ -37,7 +37,7 @@ const Hero = () => {
     {
       title: "About",
       icon: (
-        <IconUser className="h-full w-full md:text-white dark:text-white text-black" />
+        <IconUser className="h-full w-full text-white" />
       ),
       color: "bg-gradient-to-r from-[#6a82fb] to-[#fc5c7d]",
       onclick: () => openSpecificFolder("about"),
@@ -45,7 +45,7 @@ const Hero = () => {
     // {
     //   title: "Services",
     //   icon: (
-    //     <IconSettings className="h-full w-full md:text-white dark:text-white text-black" />
+    //     <IconSettings className="h-full w-full text-white" />
     //   ),
     //   color: "bg-gradient-to-r from-[#56ccf2] to-[#6e7ff3]",
     //   onclick: () => openSpecificFolder("services"),
@@ -53,7 +53,7 @@ const Hero = () => {
     {
       title: "Experience",
       icon: (
-        <IconBriefcaseFilled className="h-full w-full md:text-white dark:text-white text-black" />
+        <IconBriefcaseFilled className="h-full w-full text-white" />
       ),
       color: "bg-gradient-to-r from-[#ff9966] to-[#ff5e62]",
       onclick: () => openSpecificFolder("experience"),
@@ -62,7 +62,7 @@ const Hero = () => {
     {
       title: "Skills",
       icon: (
-        <IconTools className="h-full w-full md:text-white dark:text-white text-black" />
+        <IconTools className="h-full w-full text-white" />
       ),
       color: "bg-gradient-to-r from-[#ff6a00] to-[#ee0979]",
       onclick: () => openSpecificFolder("skills"),
@@ -71,7 +71,7 @@ const Hero = () => {
     {
       title: "Projects",
       icon: (
-        <IconCode className="h-full w-full md:text-white dark:text-white text-black" />
+        <IconCode className="h-full w-full text-white" />
       ),
       color: "bg-gradient-to-r from-[#ff7e5f] to-[#feb47b]",
       onclick: () => openSpecificFolder("projects"),
@@ -80,7 +80,7 @@ const Hero = () => {
     {
       title: "Contact",
       icon: (
-        <IconMessageCircleFilled className="h-full w-full md:text-white dark:text-white text-black" />
+        <IconMessageCircleFilled className="h-full w-full text-white" />
       ),
       color: "bg-gradient-to-r from-[#34d399] to-[#10b981]",
       onclick: () => openSpecificFolder("contact"),

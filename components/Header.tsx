@@ -58,7 +58,7 @@ const Header = () => {
           />
         </Link>
 
-        <div className="w-20 md:w-40 h-[35px] dark:bg-white bg-black rounded-b-lg absolute top-0 left-1/2 transform -translate-x-1/2"></div>
+        {/* <div className="hidden md:block max-w-40 h-[35px] dark:bg-white bg-black rounded-b-lg absolute top-0 left-1/2 transform -translate-x-1/2"></div> */}
 
         {/* Right side - Placeholder for icons like WiFi, battery */}
         <div className="flex items-center space-x-2 md:space-x-4 px-4 py-1">

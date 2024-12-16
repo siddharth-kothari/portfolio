@@ -21,16 +21,13 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
     if (ref.current) {
       const rect = ref.current.getBoundingClientRect();
       setHeight(rect.height);
-      console.log(rect.height)
     }
-    console.log("1")
   }, [ref]);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start 10%", "end 50%"],
   });
-  console.log("height: " + height);
   const heightTransform = useTransform(scrollYProgress, [0, 1], [0, height]);
   const opacityTransform = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
 

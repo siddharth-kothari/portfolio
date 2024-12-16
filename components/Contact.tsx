@@ -9,7 +9,7 @@ import { Textarea } from "./ui/textarea";
 
 const Contact = () => {
   const onSubmit = (data: FormData) => {
-    console.log(data.get("name"));
+
   };
 
   const SubmitButton = () => {
