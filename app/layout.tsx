@@ -39,13 +39,12 @@ export const metadata: Metadata = {
   },
   
 };
-
  
 export const viewport: Viewport = {
   width: 'device-width',
   height: 'device-height',
   initialScale: 1,
-  maximumScale: 1,
+  maximumScale: 5,
   userScalable: false,
 }
 

@@ -123,6 +123,7 @@ const FloatingDockMobile = ({
       <button
         data-ignore-outside-click
         onClick={() => setOpen(!open)}
+        aria-label="dock"
         className={`h-12 w-12 rounded-full bg-gray-50 dark:bg-neutral-800 flex items-center justify-center relative ${
           selectedItem?.isFolderOpen ? selectedItem?.color : ""
         }`}
