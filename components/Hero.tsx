@@ -94,7 +94,7 @@ const Hero = () => {
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url(/macbook-background-1.png)", // Add your desktop background image
+          backgroundImage: "url(/macbook-background-1.webp)", // Add your desktop background image
         }}
       />
 

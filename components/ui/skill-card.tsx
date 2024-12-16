@@ -21,7 +21,7 @@ const SkillCard: React.FC<SkillCardProps> = ({ skills }) => {
           <div
             className="relative w-24 h-24 rounded-md cursor-pointer group-hover:brightness-110"
             style={{
-              backgroundImage: `url(/folderIcon.png)`,
+              backgroundImage: `url(/folderIcon.webp)`,
               backgroundSize: "cover",
               backgroundPosition: "center",
             }}
