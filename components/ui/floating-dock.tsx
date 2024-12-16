@@ -17,7 +17,7 @@ export const FloatingDock = ({
   desktopClassName,
   mobileClassName,
 }: {
-  items: { title: string; icon: React.ReactNode; onclick: () => void, color?: string }[]; // Updated to include onClick prop for each item
+  items: { title: string; icon: React.ReactNode; onclick: () => void; color?: string; isFolderOpen?: any; }[]; // Updated to include onClick prop for each item
   desktopClassName?: string;
   mobileClassName?: string;
 }) => {
@@ -33,17 +33,24 @@ const FloatingDockMobile = ({
   items,
   className,
 }: {
-  items: { title: string; icon: React.ReactNode; onclick: () => void; color?: string }[];
+  items: { title: string; icon: React.ReactNode; onclick: () => void; color?: string; isFolderOpen?: any; }[];
   className?: string;
 }) => {
   const [open, setOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState<null | {
+    title: string;
+    icon: React.ReactNode;
+    color?: string;
+    isFolderOpen?: any;
+  }>(null); 
+  
   const dockRef = useRef<HTMLDivElement>(null);
 
-  // Close the dock when clicking outside
   useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
       if (dockRef.current && !dockRef.current.contains(event.target as Node)) {
         setOpen(false);
+        setSelectedItem(null);
       }
     };
 
@@ -95,8 +102,9 @@ const FloatingDockMobile = ({
                 >
                   <button
                     onClick={() => {
+                      setSelectedItem(item); // Set the selected item
                       item.onclick();
-                      setOpen(false); // Close the dock when an item is clicked
+                      setOpen(false); // Close the dock
                     }}
                     className={`h-12 w-12 rounded-full flex items-center justify-center ${
                       item.color || "bg-gray-200 dark:bg-neutral-700"
@@ -110,11 +118,19 @@ const FloatingDockMobile = ({
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Main Button */}
       <button
+        data-ignore-outside-click
         onClick={() => setOpen(!open)}
-        className="h-12 w-12 rounded-full bg-gray-50 dark:bg-neutral-800 flex items-center justify-center relative"
+        className={`h-12 w-12 rounded-full bg-gray-50 dark:bg-neutral-800 flex items-center justify-center relative ${
+          selectedItem?.isFolderOpen ? selectedItem?.color : ""
+        }`}
       >
-        <IconLayoutNavbarCollapse className="h-6 w-6 dark:text-white text-black" />
+        {/* Display the selected item's icon or fallback to the default icon */}
+        <div className="h-6 w-6 dark:text-white text-black">
+          {selectedItem && selectedItem.isFolderOpen ? selectedItem.icon : <IconLayoutNavbarCollapse />}
+        </div>
       </button>
     </div>
   );
@@ -125,7 +141,7 @@ const FloatingDockDesktop = ({
   items,
   className,
 }: {
-  items: { title: string; icon: React.ReactNode; onclick: () => void, color?: string }[]; // Updated to include onClick prop for each item
+  items: { title: string; icon: React.ReactNode; onclick: () => void; color?: string; isFolderOpen?: () => void; }[]; // Updated to include onClick prop for each item
   className?: string;
 }) => {
   let mouseX = useMotionValue(Infinity);
@@ -157,6 +173,7 @@ function IconContainer({
   icon: React.ReactNode;
   onclick: () => void; // Added onClick function
   color?: string;
+  isFolderOpen?: () => void;
 }) {
   let ref = useRef<HTMLDivElement>(null);
 

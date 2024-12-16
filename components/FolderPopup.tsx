@@ -45,7 +45,7 @@ const FolderPopup = ({ folder, closeFolder }: FolderPopupProps) => {
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
-        closeFolder();
+        resetSize();
       }
     };
 
