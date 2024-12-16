@@ -65,11 +65,11 @@ const FloatingDockMobile = ({
             className="absolute bottom-20 inset-x-0 flex items-center justify-center dark:text-white"
           >
             {items.map((item, idx) => {
-              // Adjust the radius for closer spacing and calculate the angle for each item
-              const radius = 90; // Reduced the radius for closer spacing
-              const angle = Math.PI + (Math.PI / (items.length - 1)) * idx; // Semicircle above
-              const x = Math.cos(angle) * radius; // Horizontal position
-              const y = Math.sin(angle) * radius; // Vertical position
+              // Dynamically adjust radius for optimal spacing
+              const radius = 90 + items.length * 5; // Dynamic radius
+              const angle = Math.PI + (Math.PI / (items.length - 1)) * idx; // Semicircle
+              const x = Math.cos(angle) * radius;
+              const y = Math.sin(angle) * radius;
 
               return (
                 <motion.div
@@ -84,9 +84,12 @@ const FloatingDockMobile = ({
                     opacity: 0,
                     x: 0,
                     y: 0,
+                    transition: {
+                      delay: (items.length - idx - 1) * 0.05, // Reverse animation
+                    },
                   }}
                   transition={{
-                    delay: idx * 0.05, // Icons animate in correct sequential order
+                    delay: idx * 0.05, // Sequential animation
                   }}
                   className="absolute"
                 >
@@ -95,9 +98,11 @@ const FloatingDockMobile = ({
                       item.onclick();
                       setOpen(false); // Close the dock when an item is clicked
                     }}
-                    className={`h-12 w-12 rounded-full flex items-center justify-center dark:text-white ${item.color}`}
+                    className={`h-12 w-12 rounded-full flex items-center justify-center ${
+                      item.color || "bg-gray-200 dark:bg-neutral-700"
+                    }`}
                   >
-                    <div className="h-6 w-6 dark:text-white">{item.icon}</div>
+                    <div className="h-6 w-6">{item.icon}</div>
                   </button>
                 </motion.div>
               );
@@ -114,6 +119,7 @@ const FloatingDockMobile = ({
     </div>
   );
 };
+
 
 const FloatingDockDesktop = ({
   items,
