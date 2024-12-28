@@ -46,6 +46,9 @@ const FloatingDockMobile = ({
   
   const dockRef = useRef<HTMLDivElement>(null);
 
+  // Wiggle animation effect on initial render
+
+
   useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
       if (dockRef.current && !dockRef.current.contains(event.target as Node)) {
@@ -72,9 +75,8 @@ const FloatingDockMobile = ({
             className="absolute bottom-20 inset-x-0 flex items-center justify-center dark:text-white"
           >
             {items.map((item, idx) => {
-              // Dynamically adjust radius for optimal spacing
-              const radius = 90 + items.length * 5; // Dynamic radius
-              const angle = Math.PI + (Math.PI / (items.length - 1)) * idx; // Semicircle
+              const radius = 90 + items.length * 5; 
+              const angle = Math.PI + (Math.PI / (items.length - 1)) * idx;
               const x = Math.cos(angle) * radius;
               const y = Math.sin(angle) * radius;
 
@@ -92,19 +94,19 @@ const FloatingDockMobile = ({
                     x: 0,
                     y: 0,
                     transition: {
-                      delay: (items.length - idx - 1) * 0.05, // Reverse animation
+                      delay: (items.length - idx - 1) * 0.05, 
                     },
                   }}
                   transition={{
-                    delay: idx * 0.05, // Sequential animation
+                    delay: idx * 0.05, 
                   }}
                   className="absolute"
                 >
                   <button
                     onClick={() => {
-                      setSelectedItem(item); // Set the selected item
+                      setSelectedItem(item); 
                       item.onclick();
-                      setOpen(false); // Close the dock
+                      setOpen(false); 
                     }}
                     className={`h-12 w-12 rounded-full flex items-center justify-center ${
                       item.color || "bg-gray-200 dark:bg-neutral-700"
@@ -119,30 +121,35 @@ const FloatingDockMobile = ({
         )}
       </AnimatePresence>
 
-      {/* Main Button */}
-      <button
+      {/* Main Button with Wiggle on Initial Load */}
+      <motion.button
         data-ignore-outside-click
         onClick={() => setOpen(!open)}
         aria-label="dock"
         className={`h-12 w-12 rounded-full bg-gray-50 dark:bg-neutral-800 flex items-center justify-center relative ${
           selectedItem?.isFolderOpen ? selectedItem?.color : ""
         }`}
+        // animate={{
+        //   rotate: wiggle ? [0, -15, 15, 0] : 0,
+        // }}
+        // transition={{
+        //   duration: 0.5,
+        //   ease: "easeInOut",
+        // }}
       >
-        {/* Display the selected item's icon or fallback to the default icon */}
         <div className="h-6 w-6 dark:text-white text-black">
           {selectedItem && selectedItem.isFolderOpen ? selectedItem.icon : <IconLayoutNavbarCollapse />}
         </div>
-      </button>
+      </motion.button>
     </div>
   );
 };
-
 
 const FloatingDockDesktop = ({
   items,
   className,
 }: {
-  items: { title: string; icon: React.ReactNode; onclick: () => void; color?: string; isFolderOpen?: () => void; }[]; // Updated to include onClick prop for each item
+  items: { title: string; icon: React.ReactNode; onclick: () => void; color?: string; isFolderOpen?: () => void; }[]; 
   className?: string;
 }) => {
   let mouseX = useMotionValue(Infinity);
@@ -172,7 +179,7 @@ function IconContainer({
   mouseX: MotionValue;
   title: string;
   icon: React.ReactNode;
-  onclick: () => void; // Added onClick function
+  onclick: () => void; 
   color?: string;
   isFolderOpen?: () => void;
 }) {
@@ -180,7 +187,6 @@ function IconContainer({
 
   let distance = useTransform(mouseX, (val) => {
     let bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
-
     return val - bounds.x - bounds.width / 2;
   });
 
@@ -217,14 +223,33 @@ function IconContainer({
   });
 
   const [hovered, setHovered] = useState(false);
+  const [bounce, setBounce] = useState(false);
+  const [wiggle, setWiggle] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setWiggle(true), 100);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Bounce animation trigger
+  const handleClick = () => {
+    setBounce(true);
+    onclick();
+    setTimeout(() => setBounce(false), 500); // Reset bounce animation after 0.5s
+  };
 
   return (
     <div
       ref={ref}
-      onClick={onclick} // Trigger onClick when an item is clicked
+      onClick={handleClick} // Trigger onClick when an item is clicked
     >
       <motion.div
         style={{ width, height }}
+        animate={{
+          y: bounce ? [0, -30, -15, 0] : 0, // Bounce effect similar to CSS keyframes
+          rotate: wiggle ? [0, -15, 15, 0] : 0,
+        }}
+        transition={{ duration: 0.7, ease: "linear" }}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
         className={`aspect-square  ${color} rounded-[10px] flex items-center justify-center relative`}
@@ -235,18 +260,22 @@ function IconContainer({
               initial={{ opacity: 0, y: 10, x: "-50%" }}
               animate={{ opacity: 1, y: -10, x: "-50%" }}
               exit={{ opacity: 0, y: 2, x: "-50%" }}
-              className="px-2 py-0.5 whitespace-pre rounded-md bg-gray-100 border dark:bg-neutral-800 dark:border-neutral-900 dark:text-white border-gray-200 text-neutral-700 absolute left-1/2 -translate-x-1/2 -top-8 w-fit text-base"
+              className="px-2 py-0.5 whitespace-pre rounded-md bg-gray-100 border dark:bg-neutral-800 dark:border-neutral-600 text-xs text-black dark:text-white absolute bottom-12 left-1/2 -translate-x-1/2"
             >
               {title}
             </motion.div>
           )}
         </AnimatePresence>
-        <motion.div
+        <div
+          className="w-full h-full flex items-center justify-center"
+        >
+          <motion.div
           style={{ width: widthIcon, height: heightIcon }}
           className={`flex items-center justify-center`}
         >
           {icon}
         </motion.div>
+        </div>
       </motion.div>
     </div>
   );
