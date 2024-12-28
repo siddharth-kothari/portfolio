@@ -39,7 +39,7 @@ const BatteryIndicator = () => {
             className="absolute text-[10px] text-white"
             style={{ zIndex: 1 }}
           >
-            <IconBoltFilled className="w-4 h-4 dark:text-white text-black"/>
+            <IconBoltFilled className="w-4 h-4 text-white dark:text-black"/>
           </span>
         )}
 
@@ -47,14 +47,15 @@ const BatteryIndicator = () => {
         <div
           style={{
             width: `${Math.max(batteryLevel, 5)}%`, // Minimum visible fill
-            backgroundColor: isCharging
-              ? "green"
-              : batteryLevel > 10
-              ? "green"
-              : "red",
             zIndex: isCharging ? 0 : 1, // Push fill below the icon when charging
           }}
-          className="absolute left-0 h-full transition-all duration-300"
+          className={`${
+    isCharging
+      ? 'bg-black dark:bg-white'
+      : batteryLevel > 10
+      ? 'bg-black dark:bg-white'
+      : 'bg-red-500'
+  } absolute left-0 h-full transition-all duration-300`}
         ></div>
 
         {/* Battery Cap */}
