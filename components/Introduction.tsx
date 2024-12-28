@@ -1,6 +1,8 @@
 "use client"
 
-const Introduction = () => {
+import Button from "./ui/button";
+
+const Introduction = ({openSpecificFolder}:any) => {
     return (
       <section className="flex flex-col items-center justify-center text-center p-4">
         <h1 className="font-bold text-white lg:text-[80px] sm:text-[60px] xs:text-[50px] text-[40px] lg:leading-[98px] mt-2">
@@ -15,6 +17,11 @@ const Introduction = () => {
         <p className="text-lg text-white">
           Let's build something amazing together!
         </p>
+
+        <div className="mt-5 grid space-y-5 md:flex md:gap-5 md:space-y-0">
+          <Button text="Let's Connect" action={() => openSpecificFolder('contact')}/>
+          <Button text="View My Work" action={() => openSpecificFolder('projects')}/>
+        </div>
       </section>
     );
   };

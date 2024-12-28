@@ -99,7 +99,7 @@ const Hero = () => {
       />
 
       <div className="absolute top-1/2 transform -translate-y-1/2 pt-2 pl-3 p-6 max-w-7xl">
-        <Introduction />
+        <Introduction openSpecificFolder={openSpecificFolder}/>
       </div>
 
       <AnimatePresence>
