@@ -14,6 +14,7 @@ import {
 } from "@tabler/icons-react";
 import DynamicClock from "./DateTime";
 import Image from "next/image";
+import BatteryStatus from "./BatteryStatus";
 
 const Header = () => {
   const goFullscreen = () => {
@@ -63,8 +64,8 @@ const Header = () => {
         {/* Right side - Placeholder for icons like WiFi, battery */}
         <div className="flex items-center space-x-2 md:space-x-4 px-4 py-1">
           <span className="dark:text-white text-black flex items-center space-x-1">
-            <p className="text-xs m-0">100%</p>
-            <IconBatteryFilled className="w-5 h-5" />
+            <BatteryStatus />
+            {/* <IconBatteryFilled className="w-5 h-5" /> */}
           </span>
 
           <span className="dark:text-white text-black">
