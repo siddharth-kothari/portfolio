@@ -33,7 +33,7 @@ const DarkModeToggle = () => {
   }, []);
 
   return (
-    <button data-ignore-outside-click onClick={toggleDarkMode} className="py-2" aria-label="dark mode toggle button">
+    <button data-ignore-outside-click onClick={toggleDarkMode} className="py-2" aria-label="dark mode toggle button" id="dark-mode">
       {isDarkMode ? <IconSunFilled /> : <IconMoonFilled className='text-black'/>}
     </button>
   );
