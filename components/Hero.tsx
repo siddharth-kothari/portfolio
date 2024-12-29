@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FolderPopup from "@/components/FolderPopup";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
@@ -17,11 +17,27 @@ import {
 } from "@tabler/icons-react";
 import Introduction from "./Introduction";
 import { Meteors } from "./ui/meteor-shower";
+import NotificationBanner from "./ui/notification-banner";
 
 const Hero = () => {
   const [openFolder, setOpenFolder] = useState<string | null>(null);
+  const [isBannerVisible, setBannerVisible] = useState(false); // State to manage visibility of the banner
 
   const openSpecificFolder = (folderName: string) => setOpenFolder(folderName);
+
+  useEffect(() => {
+    const hasSeenTips = localStorage.getItem("hasSeenTips");
+
+    if (!hasSeenTips) {
+      // Show the modal if the user hasn't seen the tips
+      setBannerVisible(true);
+    }
+  }, []);
+
+  const handleBannerClose = () => {
+    setBannerVisible(false); // Hide the banner when onClose is triggered
+    localStorage.setItem("hasSeenTips", "true");
+  };
 
   const closeFolder = () => {
     setOpenFolder(null);
@@ -86,6 +102,16 @@ const Hero = () => {
   ];
 
   return (
+    <>
+    {isBannerVisible && (
+        <NotificationBanner
+          message="Click to discover what's new!"
+          type="tips"
+          onClose={handleBannerClose} // Pass the close handler
+          onClick={() => openSpecificFolder("tips")}
+          timer={10000} // Optional: close automatically after 10 seconds
+        />
+      )}
     <section className="relative h-dvh flex flex-col items-center justify-center text-white bg-gray-900 overflow-hidden">
       <div className="absolute top-0 w-full">
         <Header />
@@ -114,6 +140,7 @@ const Hero = () => {
       </div>
       <Meteors number={20} />
     </section>
+    </>
   );
 };
 

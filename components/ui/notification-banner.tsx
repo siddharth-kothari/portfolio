@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { IconX } from "@tabler/icons-react";
+import { IconBulbFilled, IconX } from "@tabler/icons-react";
 
 type NotificationBannerProps = {
   message: string;
-  type: "success" | "error"; // Define the notification type
+  type: string; // Define the notification type
   onClose: () => void;
   onClick?: () => void;
   timer?: number;
@@ -48,10 +48,11 @@ export default function NotificationBanner({
 
   return (
     <div
-      className={`fixed top-14 right-3 w-80 p-4 rounded-2xl shadow-lg flex items-center gap-4 animate-slide-in backdrop-blur-[2px] dark:bg-[#333] bg-white`}
+      className={`fixed top-14 right-3 w-80 p-4 rounded-2xl shadow-lg flex items-center gap-4 animate-slide-in backdrop-blur-[2px] dark:bg-[#333] bg-white ${type === 'tips' ? "cursor-pointer" : ""}`}
       style={{
         border: "1px solid rgba(255, 255, 255, 0.2)", // Subtle border for glass effect
         boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)", // Frosted shadow
+        zIndex:"100"
       }}
       onMouseEnter={() => setIsHovered(true)} // Pause auto-close on hover
       onMouseLeave={() => setIsHovered(false)} // Resume auto-close when hover ends
@@ -60,11 +61,11 @@ export default function NotificationBanner({
       {/* Icon */}
       <div className="flex-shrink-0">
         <div
-          className={`w-10 h-10 rounded-full flex items-center justify-center ${
-            type === "success" ? "bg-green-400/60" : "bg-red-400/60"
+          className={`w-10 h-10 rounded-[10px] flex items-center justify-center ${
+            type === "tips" ? "bg-yellow-500" : type === "success" ? "bg-green-400/60" : "bg-red-400/60"
           }`}
         >
-          {type === "success" ? "✓" : "✗"}
+          {type === "tips" ? <IconBulbFilled /> : type === "success" ? "✓" : "✗"}
         </div>
       </div>
 
@@ -83,10 +84,17 @@ export default function NotificationBanner({
 
       {/* Close Button (Visible on Hover) */}
       <button
+        data-ignore-outside-click
         className={`absolute overflow-visible top-[-8px] left-[-8px] transition-opacity duration-200 ${
           isHovered ? "opacity-100" : "opacity-0"
         }`}
-        onClick={onClose}
+        onClick={(event) => {
+          event.stopPropagation(); // Prevent the event from bubbling up to the parent
+          onClose(); // Close the banner
+        }}
+        style={{
+          zIndex: "999"
+        }}
         aria-label="Close notification"
       >
         <IconX className="bg-white text-gray-800 dark:bg-[#333] dark:text-white border border-gray-500 rounded-full p-1 w-5 h-5" />

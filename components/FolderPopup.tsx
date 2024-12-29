@@ -8,6 +8,7 @@ import About from "./About";
 import Projects from "./Projects";
 import Skills from "./Skills";
 import Contact from "./Contact";
+import Tips from "./Tips";
 
 interface FolderPopupProps {
   folder: string;
@@ -80,6 +81,7 @@ const FolderPopup = ({ folder, closeFolder, showNotification }: FolderPopupProps
       contact: <Contact />,
       experience: <Experience />,
       services: <Experience />,
+      tips: <Tips />
     };
     return contentMap[folder] || null;
   };
