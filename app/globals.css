@@ -75,6 +75,11 @@ body .introjs-tooltip-header .introjs-skipbutton{
   color: #333;
 }
 
+body .introjs-tooltip {
+  position: fixed !important;
+  z-index: 9999; /* Make sure the tooltip is above other content */
+}
+
 /* Dark Mode Customization */
 html.dark .introjs-tooltip {
   background-color: #333333; /* Dark mode background */
