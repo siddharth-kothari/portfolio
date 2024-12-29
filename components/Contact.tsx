@@ -31,10 +31,12 @@ const Contact = () => {
   }, []);
 
   const onSubmit = async (data: FormData) => {
+    console.log(token);
     const body = {
       name: data.get("name"),
       email: data.get("email"),
       message: data.get("message"),
+      token
     };
     try {
       const response = await fetch("/api/contact", {
