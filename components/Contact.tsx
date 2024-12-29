@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React, { useState, useCallback, useMemo } from "react";
 import { useFormStatus } from "react-dom";
@@ -6,7 +6,17 @@ import { Label } from "./ui/label";
 import { Input } from "./ui/input";
 import { cn } from "@/lib/utils";
 import { Textarea } from "./ui/textarea";
-import { GoogleReCaptchaProvider, GoogleReCaptcha } from "react-google-recaptcha-v3";
+import {
+  GoogleReCaptchaProvider,
+  GoogleReCaptcha,
+} from "react-google-recaptcha-v3";
+import Link from "next/link";
+import {
+  IconBrandGithub,
+  IconBrandInstagram,
+  IconBrandLinkedin,
+  IconBrandWhatsapp,
+} from "@tabler/icons-react";
 
 const Contact = () => {
   console.log("Contact component rendered");
@@ -25,22 +35,22 @@ const Contact = () => {
       name: data.get("name"),
       email: data.get("email"),
       message: data.get("message"),
-    }
+    };
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
+      const response = await fetch("/api/contact", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(body),
       });
 
       if (!response.ok) {
-        throw new Error('Error submitting the form');
+        throw new Error("Error submitting the form");
       }
 
       const result = await response.json();
-      alert(result.message); 
+      alert(result.message);
     } catch (err) {
       // Only toggle refresh when necessary
       setRefreshReCaptcha((prev) => !prev);
@@ -84,14 +94,17 @@ const Contact = () => {
     );
   };
 
-  const stableRefreshReCaptcha = useMemo(() => refreshReCaptcha, [refreshReCaptcha]);
+  const stableRefreshReCaptcha = useMemo(
+    () => refreshReCaptcha,
+    [refreshReCaptcha]
+  );
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 className="text-3xl text-center font-bold mb-3">
         Let&apos;s Connect
       </h2>
-      <p className="max-w-3xl text-center mb-20 mx-auto">
+      <p className="max-w-3xl text-center mb-12 mx-auto">
         Got a question or project in mind? Let&apos;s get in touch!
       </p>
       <form className="my-8" action={onSubmit}>
@@ -120,13 +133,36 @@ const Contact = () => {
           />
         </LabelInputContainer>
         <SubmitButton />
-        
       </form>
 
       <GoogleReCaptcha
-            onVerify={setTokenFunc}
-            refreshReCaptcha={stableRefreshReCaptcha}
-          />
+        onVerify={setTokenFunc}
+        refreshReCaptcha={stableRefreshReCaptcha}
+      />
+
+      <div className="relative">
+        <div className="absolute inset-0 flex items-center">
+          <span className="w-full border-t"></span>
+        </div>
+        <div className="relative flex justify-center text-xs tracking-widest uppercase">
+          <span className="bg-white dark:bg-[#333] px-2">Let’s connect on</span>
+        </div>
+      </div>
+
+      <div className="flex gap-5 items-center justify-center my-7">
+        <Link href="https://github.com/siddharth-kothari" target="_blank">
+          <IconBrandGithub className="w-7 h-7 text-black dark:text-white transition-transform transform hover:scale-125 duration-300" />
+        </Link>
+        <Link href="https://instagram.com/_siddharthkothari_" target="_blank">
+          <IconBrandInstagram className="w-7 h-7 text-black dark:text-white transition-transform transform hover:scale-125 duration-300" />
+        </Link>
+        <Link href="https://wa.me/918208567642" target="_blank">
+          <IconBrandWhatsapp className="w-7 h-7 text-black dark:text-white transition-transform transform hover:scale-125 duration-300" />
+        </Link>
+        <Link href="https://www.linkedin.com/in/siddharthkothari01/" target="_blank">
+          <IconBrandLinkedin className="w-7 h-7 text-black dark:text-white transition-transform transform hover:scale-125 duration-300" />
+        </Link>
+      </div>
     </div>
   );
 };
