@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
+import Provider from "@/lib/Provider";
 
 const isProduction = process.env.NEXT_ENV === 'production';
 
@@ -56,7 +58,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="font-poppins">
-        {children}
+        <Provider>
+          {children}
+        </Provider>
       </body>
     </html>
   );
