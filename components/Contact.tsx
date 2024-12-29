@@ -8,47 +8,8 @@ import { cn } from "@/lib/utils";
 import { Textarea } from "./ui/textarea";
 import { GoogleReCaptchaProvider, GoogleReCaptcha } from "react-google-recaptcha-v3";
 
-// Memoize the SubmitButton component
-const SubmitButton = React.memo(() => {
-  const data = useFormStatus();
-  return (
-    <button
-      disabled={data.pending}
-      className="bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
-    >
-      {data.pending ? "Submitting..." : "Submit"}
-      <BottomGradient />
-    </button>
-  );
-});
-
-// Memoize BottomGradient to avoid re-renders
-const BottomGradient = React.memo(() => {
-  return (
-    <>
-      <span className="group-hover/btn:opacity-100 block transition duration-500 opacity-0 absolute h-px w-full -bottom-px inset-x-0 bg-gradient-to-r from-transparent via-cyan-500 to-transparent" />
-      <span className="group-hover/btn:opacity-100 blur-sm block transition duration-500 opacity-0 absolute h-px w-1/2 mx-auto -bottom-px inset-x-10 bg-gradient-to-r from-transparent via-indigo-500 to-transparent" />
-    </>
-  );
-});
-
-const LabelInputContainer = ({
-  children,
-  className,
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) => {
-  return (
-    <div className={cn("flex flex-col space-y-2 w-full", className)}>
-      {children}
-    </div>
-  );
-};
-
 const Contact = () => {
   console.log("Contact component rendered");
-
   const [token, setToken] = useState("");
   const [refreshReCaptcha, setRefreshReCaptcha] = useState(false);
 
@@ -58,9 +19,6 @@ const Contact = () => {
       return getToken;
     });
   }, []);
-
-  // Using useMemo to ensure stable value for refreshReCaptcha
-  const stableRefreshReCaptcha = useMemo(() => refreshReCaptcha, [refreshReCaptcha]);
 
   const onSubmit = async (data: FormData) => {
     try {
@@ -73,9 +31,49 @@ const Contact = () => {
     }
   };
 
+  const SubmitButton = () => {
+    const data = useFormStatus();
+    return (
+      <button
+        disabled={data.pending}
+        className="bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
+      >
+        {data.pending ? "Submitting..." : "Submit"}
+        <BottomGradient />
+      </button>
+    );
+  };
+
+  const BottomGradient = () => {
+    return (
+      <>
+        <span className="group-hover/btn:opacity-100 block transition duration-500 opacity-0 absolute h-px w-full -bottom-px inset-x-0 bg-gradient-to-r from-transparent via-cyan-500 to-transparent" />
+        <span className="group-hover/btn:opacity-100 blur-sm block transition duration-500 opacity-0 absolute h-px w-1/2 mx-auto -bottom-px inset-x-10 bg-gradient-to-r from-transparent via-indigo-500 to-transparent" />
+      </>
+    );
+  };
+
+  const LabelInputContainer = ({
+    children,
+    className,
+  }: {
+    children: React.ReactNode;
+    className?: string;
+  }) => {
+    return (
+      <div className={cn("flex flex-col space-y-2 w-full", className)}>
+        {children}
+      </div>
+    );
+  };
+
+  const stableRefreshReCaptcha = useMemo(() => refreshReCaptcha, [refreshReCaptcha]);
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 className="text-3xl text-center font-bold mb-3">Let&apos;s Connect</h2>
+      <h2 className="text-3xl text-center font-bold mb-3">
+        Let&apos;s Connect
+      </h2>
       <p className="max-w-3xl text-center mb-20 mx-auto">
         Got a question or project in mind? Let&apos;s get in touch!
       </p>
@@ -105,12 +103,13 @@ const Contact = () => {
           />
         </LabelInputContainer>
         <SubmitButton />
+        
       </form>
 
       <GoogleReCaptcha
-        onVerify={setTokenFunc}
-        refreshReCaptcha={stableRefreshReCaptcha}
-      />
+            onVerify={setTokenFunc}
+            refreshReCaptcha={stableRefreshReCaptcha}
+          />
     </div>
   );
 };
