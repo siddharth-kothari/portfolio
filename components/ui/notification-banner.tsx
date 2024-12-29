@@ -56,7 +56,12 @@ export default function NotificationBanner({
       }}
       onMouseEnter={() => setIsHovered(true)} // Pause auto-close on hover
       onMouseLeave={() => setIsHovered(false)} // Resume auto-close when hover ends
-      onClick={onClick}
+      onClick={(e) => {
+        // Ensure the click is not triggered when clicking on the close button
+        if ((e.target as HTMLElement).closest('button')) return;  // Skip if the click is on the close button
+        onClick?.(); // Trigger the popup opening logic
+        onClose();
+      }}
     >
       {/* Icon */}
       <div className="flex-shrink-0">
