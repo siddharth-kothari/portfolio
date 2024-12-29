@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
-import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
+import { GoogleTagManager, GoogleAnalytics } from "@next/third-parties/google";
 import Provider from "@/lib/Provider";
 
 const isProduction = process.env.NEXT_ENV === 'production';
@@ -58,6 +58,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="font-poppins">
+        <GoogleTagManager gtmId="G-CR8XJ5DFPX" />
+        <GoogleAnalytics gaId="G-CR8XJ5DFPX" />
         <Provider>
           {children}
         </Provider>
