@@ -32,7 +32,7 @@ const BatteryIndicator = () => {
       <span className="text-xs dark:text-white text-black">{batteryLevel}%</span>
 
       {/* Battery Icon */}
-      <div className="relative w-6 h-3 border border-black dark:border-gray-300 rounded-sm flex items-center justify-center z-20">
+      <div className="relative w-5 h-3 border border-gray-600 rounded-sm flex items-center justify-center z-20">
         {/* Charging Icon */}
         {isCharging && (
           <span
@@ -55,12 +55,12 @@ const BatteryIndicator = () => {
       : batteryLevel > 10
       ? 'bg-black dark:bg-white'
       : 'bg-red-500'
-  } absolute left-0 h-full transition-all duration-300`}
+  } absolute left-0 h-full transition-all duration-300 rounded-sm`}
         ></div>
 
         {/* Battery Cap */}
       </div>
-        <div className="absolute z-10 top-[5.5px] right-[-2px] w-[2px] h-[5px] bg-black dark:bg-gray-300 rounded-e-md"></div>
+        <div className="absolute z-10 top-[5.5px] right-[-2px] w-[2px] h-[5px] bg-black dark:bg-white rounded-e-md"></div>
     </div>
   );
 };
