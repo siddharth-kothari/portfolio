@@ -21,9 +21,26 @@ const Contact = () => {
   }, []);
 
   const onSubmit = async (data: FormData) => {
+    const body = {
+      name: data.get("name"),
+      email: data.get("email"),
+      message: data.get("message"),
+    }
     try {
-      console.log("Token:", token);
-      console.log("Data:", data);
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+      });
+
+      if (!response.ok) {
+        throw new Error('Error submitting the form');
+      }
+
+      const result = await response.json();
+      alert(result.message); 
     } catch (err) {
       // Only toggle refresh when necessary
       setRefreshReCaptcha((prev) => !prev);
