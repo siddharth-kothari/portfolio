@@ -17,11 +17,16 @@ import {
   IconBrandLinkedin,
   IconBrandWhatsapp,
 } from "@tabler/icons-react";
+import NotificationBanner from "./ui/notification-banner";
 
 const Contact = () => {
-  console.log("Contact component rendered");
+  
   const [token, setToken] = useState("");
   const [refreshReCaptcha, setRefreshReCaptcha] = useState(false);
+  const [notification, setNotification] = useState<{
+    message: string;
+    type: "success" | "error";
+  } | null>(null);
 
   const setTokenFunc = useCallback((getToken: string) => {
     setToken((prevToken) => {
@@ -31,7 +36,7 @@ const Contact = () => {
   }, []);
 
   const onSubmit = async (data: FormData) => {
-    console.log(token);
+
     const body = {
       name: data.get("name"),
       email: data.get("email"),
@@ -51,12 +56,20 @@ const Contact = () => {
         throw new Error("Error submitting the form");
       }
 
-      const result = await response.json();
-      alert(result.message);
+      const res = await response.json();
+      
+      setNotification({
+        message: res.message,
+        type: res.status === 200 ? "success" : "error",
+      });
+      
     } catch (err) {
       // Only toggle refresh when necessary
       setRefreshReCaptcha((prev) => !prev);
-      console.error(err);
+      setNotification({
+        message: "Failed to send the message. Please try again.",
+        type: "error",
+      });
     }
   };
 
@@ -165,6 +178,14 @@ const Contact = () => {
           <IconBrandLinkedin className="w-7 h-7 text-black dark:text-white transition-transform transform hover:scale-125 duration-300" />
         </Link>
       </div>
+
+      {notification && (
+        <NotificationBanner
+          message={notification.message}
+          type={notification.type}
+          onClose={() => setNotification(null)}
+        />
+      )}
     </div>
   );
 };

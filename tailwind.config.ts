@@ -26,8 +26,13 @@ export default {
       },
       animation: {
         "meteor-effect": "meteor 5s linear infinite",
+        "slide-in": "slideIn 0.5s ease-out",
       },
       keyframes: {
+        slideIn: {
+          "0%": { transform: "translateY(-100%)", opacity: "0" },
+          "100%": { transform: "translateY(0)", opacity: "1" },
+        },
         meteor: {
           "0%": { transform: "rotate(215deg) translateX(0)", opacity: "1" },
           "70%": { opacity: "1" },

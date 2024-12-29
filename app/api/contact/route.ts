@@ -11,12 +11,10 @@ export async function POST(request: NextRequest) {
     const { name, email, message, token } = await request.json();
 
     if(!token){
-      return new Response(JSON.stringify({ message: 'Token not found!' }), { status: 400 });
+      return new Response(JSON.stringify({ status: 400, message: 'Token not found!' }), { status: 400 });
     }
 
     const isTokenVerified = await verifyCaptcha(token);
-
-    console.log("isTokenVerified", isTokenVerified)
 
     const msg = {
       to: 'sidkothari005@gmail.com',  // Replace with your email address
@@ -28,13 +26,13 @@ export async function POST(request: NextRequest) {
 
     if(isTokenVerified) {
       await sendgrid.send(msg);
-      return new Response(JSON.stringify({ message: 'Email sent successfully!' }), { status: 200 });
+      return new Response(JSON.stringify({  status: 200, message: 'Email sent successfully!' }), { status: 200 });
     } else {
-      return new Response(JSON.stringify({ message: 'Token Verification Failed' }), { status: 400 });
+      return new Response(JSON.stringify({  status: 400, message: 'Token Verification Failed' }), { status: 400 });
     }
     
   } catch (error) {
     console.error('Error sending email:', error);
-    return new Response(JSON.stringify({ message: 'Failed to send email.' }), { status: 500 });
+    return new Response(JSON.stringify({  status: 500, message: 'Failed to send email.' }), { status: 500 });
   }
 }
