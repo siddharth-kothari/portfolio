@@ -57,9 +57,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <GoogleTagManager gtmId="G-CR8XJ5DFPX" />
+      <GoogleAnalytics gaId="G-CR8XJ5DFPX" />
       <body className="font-poppins">
-        <GoogleTagManager gtmId="G-CR8XJ5DFPX" />
-        <GoogleAnalytics gaId="G-CR8XJ5DFPX" />
         <Provider>
           {children}
         </Provider>
