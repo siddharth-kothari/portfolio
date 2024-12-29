@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { GoogleTagManager, GoogleAnalytics } from "@next/third-parties/google";
 import Provider from "@/lib/Provider";
+import Clarity from '@microsoft/clarity';
 
 const isProduction = process.env.NEXT_ENV === 'production';
 
@@ -50,6 +51,10 @@ export const viewport: Viewport = {
   userScalable: true,
 }
 
+const projectId = "plistqra3p";
+
+Clarity.init(projectId);
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -57,7 +62,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <GoogleTagManager gtmId="G-CR8XJ5DFPX" />
+      <GoogleTagManager gtmId="GTM-T3DF4J2X" />
       <GoogleAnalytics gaId="G-CR8XJ5DFPX" />
       <body className="font-poppins">
         <Provider>
