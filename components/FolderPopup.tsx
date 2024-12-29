@@ -77,7 +77,7 @@ const FolderPopup = ({ folder, closeFolder, showNotification }: FolderPopupProps
       projects: <Projects />,
       about: <About />,
       skills: <Skills />,
-      contact: <Contact showNotification={showNotification as Function}/>,
+      contact: <Contact />,
       experience: <Experience />,
       services: <Experience />,
     };
