@@ -51,7 +51,7 @@ const Projects = () => {
   ];
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-x-hidden">
       <h2 className="text-3xl text-center font-bold mb-3">Featured Projects</h2>
       <p className="max-w-3xl text-center mb-20 mx-auto">
         Explore my dynamic web solutions crafted with React.js and Laravel,
