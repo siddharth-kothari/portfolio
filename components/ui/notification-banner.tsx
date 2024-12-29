@@ -5,12 +5,16 @@ type NotificationBannerProps = {
   message: string;
   type: "success" | "error"; // Define the notification type
   onClose: () => void;
+  onClick?: () => void;
+  timer?: number;
 };
 
 export default function NotificationBanner({
   message,
   type,
   onClose,
+  onClick,
+  timer = 5000
 }: NotificationBannerProps) {
   const [isHovered, setIsHovered] = useState(false);
   const [elapsedTime, setElapsedTime] = useState<string>("now");
@@ -35,11 +39,11 @@ export default function NotificationBanner({
 
   useEffect(() => {
     // Auto-close logic: close after 4 seconds if not hovered
-    const timer = setTimeout(() => {
+    const timer1 = setTimeout(() => {
       if (!isHovered) onClose();
-    }, 5000);
+    }, timer);
 
-    return () => clearTimeout(timer); // Cleanup timeout on unmount
+    return () => clearTimeout(timer1); // Cleanup timeout on unmount
   }, [isHovered, onClose]);
 
   return (
@@ -51,6 +55,7 @@ export default function NotificationBanner({
       }}
       onMouseEnter={() => setIsHovered(true)} // Pause auto-close on hover
       onMouseLeave={() => setIsHovered(false)} // Resume auto-close when hover ends
+      onClick={onClick}
     >
       {/* Icon */}
       <div className="flex-shrink-0">
