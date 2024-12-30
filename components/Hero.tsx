@@ -106,6 +106,8 @@ const Hero = () => {
 
   const startTour = () => {
     introJs().setOptions({
+      scrollToElement: true, // Ensures the element is scrolled into view
+      scrollTo: 'tooltip',
       steps: [
         {
           intro: 'Welcome to my developer portfolio! I&apos;m Siddharth, and this is where I showcase my work and skills. Let me guide you through the key features of the site.',
