@@ -38,10 +38,6 @@ body .introjs-tooltip {
   font-family: "Poppins", serif !important;
 }
 
-body .introjs-tooltip .introjs-arrow {
-  background-color: #333333; /* Dark mode arrow */
-}
-
 body .introjs-helperLayer {
   background-color: rgba(0, 0, 0, 0); /* Darker dim background */
 }
@@ -51,8 +47,6 @@ body .introjs-tooltipbuttons{
   font-family: "Poppins", serif !important;
 }
 
-/* Custom button styles without overriding text content rendering */
-/* Remove hover effect on the buttons */
 body .introjs-tooltip .introjs-button, body .introjs-tooltip .introjs-button:hover {
   background-color: #333 !important;  /* Set the background color you want */
   color: #fff !important;  /* Set the text color you want */
@@ -76,49 +70,5 @@ body .introjs-tooltip-header .introjs-skipbutton{
 }
 
 body .introjs-tooltip {
-  position: fixed !important;
   z-index: 9999; /* Make sure the tooltip is above other content */
 }
-
-/* Dark Mode Customization */
-html.dark .introjs-tooltip {
-  background-color: #333333; /* Dark mode background */
-  color: #ffffff; /* Dark mode text color */
-  width: 330px;
-  max-width: 330px;
-}
-
-html.dark .introjs-tooltip .introjs-arrow {
-  background-color: #333333; /* Dark mode arrow */
-}
-
-html.dark .introjs-helperLayer {
-  background-color: rgba(0, 0, 0, 0); /* Darker dim background */
-}
-
-html.dark .introjs-tooltipbuttons{
-  display: block;
-}
-
-html.dark .introjs-tooltip .introjs-button, html.dark .introjs-tooltip .introjs-button:hover {
-  background-color: #fff !important; /* Dark mode primary button */
-  color:black !important;
-  text-shadow: none !important;
-}
-
-html.dark .introjs-tooltip-header .introjs-tooltip-title{
-  font-weight: 600;
-  font-size: x-large;
-  letter-spacing: 0.5px;
-}
-
-html.dark .introjs-tooltip .introjs-tooltiptext{
-  font-weight: 400;
-  line-height: 25px;
-  letter-spacing: 0.5px;
-}
-
-html.dark .introjs-tooltip-header .introjs-skipbutton{
-  color: white;
-}
-
