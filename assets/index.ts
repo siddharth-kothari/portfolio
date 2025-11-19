@@ -15,6 +15,7 @@ import restApi from './api.webp'
 import bootstrap from './bootstrap.webp'
 import git from './git.webp'
 import wordpress from './wordpress.webp'
+import core_value from './core_value.png'
 
 export {
     logo,
@@ -33,5 +34,6 @@ export {
     restApi,
     bootstrap,
     git,
-    wordpress
+    wordpress,
+    core_value
 };

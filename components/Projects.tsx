@@ -4,6 +4,7 @@ import React from "react";
 import { ProjectCard } from "./ui/project-card";
 import {
   cartify,
+  core_value,
   dental_care_solutions,
   facing_east_studios,
   glam2door,
@@ -12,13 +13,22 @@ import {
 const Projects = () => {
   const projects = [
     {
+      image: core_value,
+      title: "Core",
+      description:
+        "Developed a clean and responsive website for a furniture and surface solutions brand. Built to ensure smooth navigation, fast performance, and a seamless browsing experience.",
+      techUsed: ["Next.js", "TypeScript", "Tailwind CSS"],
+      date: "September 2025",
+      link: "https://core-value.in/",
+    },
+    {
       image: facing_east_studios,
       title: "Facing East Studios",
       description:
-        "Currently working on a website for a brand offering services in brand identity, label design, ad campaigns, and digital marketing. The project focuses on presenting their creative solutions in a compelling and user-friendly way.",
+        "Built a modern and minimal website for an ad agency to showcase their work and services. Focused on stability, performance, and delivering a polished user experience.",
       techUsed: ["Next.js", "TypeScript", "Tailwind CSS"],
-      date: "Ongoing",
-      link: "#",
+      date: "May 2025",
+      link: "https://facingeast.studio/",
     },
     {
       image: dental_care_solutions,

@@ -30,6 +30,9 @@ export const metadata: Metadata = {
     description: process.env.NEXT_SITE_DESCRIPTION,
     images: ['/logo.png'], // Must be an absolute URL
   },
+  alternates: {
+    canonical: process.env.NEXT_URL,
+  },
   robots: {
     index: isProduction, // Allow indexing in production
     follow: isProduction, // Allow following links in production
@@ -62,9 +65,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <link rel="canonical" href="https://www.siddharthkothari.com" />
-      </head>
       <GoogleTagManager gtmId="GTM-T3DF4J2X" />
       <GoogleAnalytics gaId="G-CR8XJ5DFPX" />
       <body className="font-poppins">
