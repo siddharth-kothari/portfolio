@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import FolderPopup from "@/components/FolderPopup";
 import { AnimatePresence, motion } from "framer-motion";
-import Link from "next/link";
+// import Link from "next/link";
 import Header from "./Header";
 import { FloatingDock } from "@/components/ui/floating-dock";
 import {
@@ -18,7 +18,7 @@ import {
 import Introduction from "./Introduction";
 import { Meteors } from "./ui/meteor-shower";
 import NotificationBanner from "./ui/notification-banner";
-import introJs from "intro.js";
+// import introJs from "intro.js";
 import "intro.js/introjs.css";
 import "@/app/globals.css";
 
@@ -104,35 +104,44 @@ const Hero = () => {
     },
   ];
 
-  const startTour = () => {
-    introJs().setOptions({
-      scrollToElement: true, // Ensures the element is scrolled into view
-      scrollTo: 'tooltip',
-      steps: [
-        {
-          intro: 'Welcome to my developer portfolio! I&apos;m Siddharth, and this is where I showcase my work and skills. Let me guide you through the key features of the site.',
-          title: 'Welcome!',
-        },
-        {
-          element: '#dark-mode',
-          intro: 'For a more comfortable experience, you can switch between dark and light modes using the toggle in the header.',
-          title: 'Dark Mode',
-        },
-        {
-          element: '#dock1',
-          intro: 'At the bottom of the page, you&apos;ll find the floating dock. Click on the icons to quickly navigate to different sections of the portfolio.',
-          title: 'Dock',
-        },
-        {
-          intro: 'That&apos;s the end of the tour! Feel free to explore the site further, view my projects, and contact me. Don’t hesitate to reach out if you have any questions.',
-          title: 'Thanks for Touring!',
-        }
-      ],
-      nextLabel: 'Next',
-      prevLabel: 'Back',
-    }).start();
-    
-  }
+  const startTour = async () => {
+    if (typeof window === "undefined") return;
+
+    const introJs = (await import("intro.js")).default;
+
+    introJs()
+      .setOptions({
+        scrollToElement: true,
+        scrollTo: "tooltip",
+        steps: [
+          {
+            intro:
+              "Welcome to my developer portfolio! I'm Siddharth, and this is where I showcase my work and skills. Let me guide you through the key features of the site.",
+            title: "Welcome!",
+          },
+          {
+            element: "#dark-mode",
+            intro:
+              "For a more comfortable experience, you can switch between dark and light modes using the toggle in the header.",
+            title: "Dark Mode",
+          },
+          {
+            element: "#dock1",
+            intro:
+              "At the bottom of the page, you'll find the floating dock. Click on the icons to quickly navigate to different sections of the portfolio.",
+            title: "Dock",
+          },
+          {
+            intro:
+              "That's the end of the tour! Feel free to explore the site further, view my projects, and contact me.",
+            title: "Thanks for Touring!",
+          },
+        ],
+        nextLabel: "Next",
+        prevLabel: "Back",
+      })
+      .start();
+  };
 
   return (
     <>
