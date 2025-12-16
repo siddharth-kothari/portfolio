@@ -9,6 +9,7 @@ import Projects from "./Projects";
 import Skills from "./Skills";
 import Contact from "./Contact";
 import Tips from "./Tips";
+import type { ReactNode } from "react";
 
 interface FolderPopupProps {
   folder: string;
@@ -74,7 +75,7 @@ const FolderPopup = ({ folder, closeFolder, showNotification }: FolderPopupProps
   }, []);
 
   const getFolderContent = () => {
-    const contentMap: { [key: string]: JSX.Element | null } = {
+    const contentMap: Record<string, ReactNode> = {
       projects: <Projects />,
       about: <About />,
       skills: <Skills />,
