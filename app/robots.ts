@@ -1,15 +1,16 @@
-import type { MetadataRoute } from 'next'
- 
-export default function robots(): MetadataRoute.Robots {
+import type { MetadataRoute } from "next";
+import { getSiteUrl, isProduction } from "@/data/site";
 
-    const baseUrl = process.env.NEXT_URL || 'https://siddharthkothari.com/';
+export default function robots(): MetadataRoute.Robots {
+  const base = getSiteUrl();
+  if (!isProduction()) {
+    return {
+      rules: { userAgent: "*", disallow: "/" },
+    };
+  }
 
   return {
-    rules: {
-      userAgent: '*',
-      allow: '/',
-      disallow: '/private/',
-    },
-    sitemap: `${baseUrl}sitemap.xml`,
-  }
+    rules: { userAgent: "*", allow: "/" },
+    sitemap: `${base}/sitemap.xml`,
+  };
 }

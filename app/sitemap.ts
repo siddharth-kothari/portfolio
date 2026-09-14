@@ -1,14 +1,30 @@
-import type { MetadataRoute } from 'next'
- 
+import type { MetadataRoute } from "next";
+import { getProjectSlugs } from "@/data/projects";
+import { getServiceSlugs } from "@/data/services";
+import { getSiteUrl } from "@/data/site";
+
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_URL || 'https://siddharthkothari.com/';
+  const base = getSiteUrl();
+  const staticRoutes = ["", "/work", "/services", "/about", "/contact"];
 
   return [
-    {
-      url: `${baseUrl}`,
+    ...staticRoutes.map((path) => ({
+      url: `${base}${path}`,
       lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 1,
-    },
-  ]
+      changeFrequency: "monthly" as const,
+      priority: path === "" ? 1 : 0.8,
+    })),
+    ...getProjectSlugs().map((slug) => ({
+      url: `${base}/work/${slug}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
+    ...getServiceSlugs().map((slug) => ({
+      url: `${base}/services/${slug}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
+  ];
 }

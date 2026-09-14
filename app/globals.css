@@ -1,74 +1,360 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap'); */
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --mac-glass: rgba(246, 246, 246, 0.72);
+  --mac-window: #f6f6f6;
+  --mac-title: #e8e8e8;
+  --mac-text: #1d1d1f;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.dark {
+  --mac-glass: rgba(28, 28, 30, 0.62);
+  --mac-window: #2c2c2e;
+  --mac-title: #3a3a3c;
+  --mac-text: #f5f5f7;
 }
 
-html {
-  scroll-behavior: smooth;
+html,
+body {
+  min-height: 100%;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: "Poppins", serif !important;
+  margin: 0;
+  color: var(--mac-text);
+  font-family: var(--font-geist), system-ui, sans-serif;
+  background: #111;
 }
 
-body .introjs-tooltipReferenceLayer *{
-  font-family: "Poppins", serif !important;
+.font-serif,
+.app-page h1,
+.app-page h2,
+.app-page h3 {
+  font-family: var(--font-instrument), Georgia, serif;
 }
 
-body .introjs-tooltip {
-  background-color: #fff; /* Dark mode background */
-  color: #000; /* Dark mode text color */
-  width: 330px;
-  max-width: 330px;
-  font-family: "Poppins", serif !important;
+::selection {
+  background: #7dd3fc;
+  color: #082f49;
 }
 
-body .introjs-helperLayer {
-  background-color: rgba(0, 0, 0, 0); /* Darker dim background */
+.mac-menubar {
+  background: var(--mac-glass);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
 
-body .introjs-tooltipbuttons{
-  display: block;
-  font-family: "Poppins", serif !important;
+.dark .mac-menubar {
+  border-bottom-color: rgba(255, 255, 255, 0.06);
+  color: #f5f5f7;
 }
 
-body .introjs-tooltip .introjs-button, body .introjs-tooltip .introjs-button:hover {
-  background-color: #333 !important;  /* Set the background color you want */
-  color: #fff !important;  /* Set the text color you want */
-  text-shadow: none !important;
+.mac-window {
+  background: var(--mac-window);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 12px;
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.28),
+    0 2px 6px rgba(0, 0, 0, 0.12);
 }
 
-body .introjs-tooltip-header .introjs-tooltip-title{
-  font-weight: 600;
-  font-size: large;
-  letter-spacing: 0.5px;
+.dark .mac-window {
+  border-color: rgba(255, 255, 255, 0.08);
 }
 
-body .introjs-tooltip .introjs-tooltiptext{
+.mac-titlebar {
+  background: var(--mac-title);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  cursor: grab;
+}
+
+.dark .mac-titlebar {
+  border-bottom-color: rgba(255, 255, 255, 0.05);
+}
+
+.mac-window-body {
+  background: var(--mac-window);
+}
+
+.desktop-glass {
+  background: rgba(184, 204, 234, 0.38);
+  border: 1px solid rgba(255, 255, 255, 0.48);
+  box-shadow: 0 12px 36px rgba(60, 80, 110, 0.08);
+  backdrop-filter: blur(32px) saturate(150%);
+  -webkit-backdrop-filter: blur(32px) saturate(150%);
+}
+
+.desktop-kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.65rem;
+  height: 1.55rem;
+  padding: 0 0.42rem;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.4);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1;
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.06);
+}
+
+.dark .desktop-kbd {
+  border-color: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+
+.dark .desktop-glass {
+  background: rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
+}
+
+.traffic {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  border: 0;
+  position: relative;
+}
+
+.traffic-close {
+  background: #ff5f57;
+}
+
+.traffic-min {
+  background: #febc2e;
+}
+
+.traffic-zoom {
+  background: #28c840;
+}
+
+.mac-dock {
+  overflow: visible;
+  background: var(--mac-glass);
+  backdrop-filter: saturate(180%) blur(24px);
+  -webkit-backdrop-filter: saturate(180%) blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.22);
+}
+
+.mac-spotlight,
+.mac-note {
+  background: var(--mac-glass);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 18px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+}
+
+.app-page {
+  padding: 2rem 1.5rem 3rem;
+}
+
+@media (min-width: 768px) {
+  .app-page {
+    padding: 2.75rem 3rem 4rem;
+  }
+}
+
+.app-hero {
+  margin-bottom: 2.25rem;
+}
+
+.app-page h1 {
+  font-size: clamp(2.1rem, 4vw, 3.4rem);
+  line-height: 1.1;
   font-weight: 400;
-  line-height: 25px;
-  letter-spacing: 0.5px;
 }
 
-body .introjs-tooltip-header .introjs-skipbutton{
-  color: #333;
+.app-page h2 {
+  font-size: 1.35rem;
+  font-weight: 400;
 }
 
-body .introjs-tooltip {
-  z-index: 9999; /* Make sure the tooltip is above other content */
+.eyebrow {
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.5;
+  font-family: var(--font-geist), system-ui, sans-serif;
+}
+
+.lede {
+  margin-top: 0.9rem;
+  max-width: 40rem;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  opacity: 0.78;
+  font-family: var(--font-geist), system-ui, sans-serif;
+}
+
+.app-page p,
+.app-page li,
+.app-page dd {
+  font-family: var(--font-geist), system-ui, sans-serif;
+  line-height: 1.65;
+}
+
+.app-page dt {
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.5;
+  margin-bottom: 0.5rem;
+  font-family: var(--font-geist), system-ui, sans-serif;
+}
+
+.chip {
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.06);
+  padding: 0.25rem 0.7rem;
+  font-size: 0.75rem;
+}
+
+.dark .chip {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.mac-btn,
+.mac-btn-light,
+.mac-btn-ghost,
+.mac-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 0.65rem 1.15rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.mac-btn {
+  background: #0a84ff;
+  color: white;
+}
+
+.mac-btn-secondary {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.dark .mac-btn-secondary {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.mac-btn-light {
+  background: white;
+  color: #111;
+}
+
+.mac-btn-ghost {
+  border: 1px solid rgba(17, 17, 17, 0.45);
+  background: rgba(255, 255, 255, 0.55);
+  color: #111;
+}
+
+.dark .mac-btn-ghost {
+  border-color: rgba(255, 255, 255, 0.45);
+  color: white;
+}
+
+.mac-btn:hover,
+.mac-btn-light:hover,
+.mac-btn-secondary:hover,
+.mac-btn-ghost:hover {
+  transform: translateY(-1px);
+}
+
+.dock-item {
+  display: block;
+  transform-origin: bottom center;
+  transition: transform 0.18s ease;
+}
+
+.app-icon {
+  overflow: hidden;
+  border-radius: 22.5%;
+  box-shadow:
+    0 1px 1px rgba(0, 0, 0, 0.16),
+    0 4px 10px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45);
+}
+
+.group\/dock:hover .dock-item {
+  transform: scale(1.18);
+}
+
+.dock-tooltip {
+  position: absolute;
+  bottom: calc(100% + 24px);
+  left: 50%;
+  z-index: 20;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: rgba(48, 50, 56, 0.92);
+  backdrop-filter: blur(22px) saturate(160%);
+  -webkit-backdrop-filter: blur(22px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  padding: 5px 13px;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.25;
+  color: #f5f5f7;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.32);
+}
+
+.dock-tooltip::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -5px;
+  width: 10px;
+  height: 10px;
+  transform: translateX(-50%) rotate(45deg);
+  background: rgba(48, 50, 56, 0.96);
+  border-right: 1px solid rgba(255, 255, 255, 0.16);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 1.5px;
+}
+
+.group\/dock:hover .dock-tooltip {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dock-item {
+    transition: none;
+  }
+  .dock-item:hover {
+    transform: none;
+  }
+}
+
+.mac-field {
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: rgba(255, 255, 255, 0.8);
+  padding: 0.7rem 0.85rem;
+  outline: none;
+}
+
+.dark .mac-field {
+  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.mac-field:focus {
+  box-shadow: 0 0 0 3px rgba(10, 132, 255, 0.25);
 }
