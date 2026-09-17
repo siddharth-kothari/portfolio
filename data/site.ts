@@ -1,10 +1,10 @@
 export const site = {
   name: "Siddharth Kothari",
   firstName: "Siddharth",
-  role: "Freelance web designer & developer",
+  role: "Software Engineer, Backend",
   headline:
-    "I design and build fast, distinctive websites for brands, clinics, and studios — from first impression to launch.",
-  shortHeadline: "Websites that feel considered — and convert.",
+    "I build the backends and the websites that sit on them — fast, clear, meant to last.",
+  shortHeadline: "Software Engineer, Backend",
   availability: "Open for freelance",
   availabilityNote: "Booking new projects for the coming quarter",
   location: "India · Remote worldwide",
@@ -15,9 +15,9 @@ export const site = {
   instagram: "https://instagram.com/_siddharthkothari_",
   whatsapp: "https://wa.me/918208567642",
   keywords:
-    "freelance web developer, Next.js, Laravel, brand websites, e-commerce, booking websites, India",
+    "software engineer backend, Laravel, Next.js, APIs, booking websites, India",
   description:
-    "Siddharth Kothari is a freelance web designer and developer. Custom brand sites, booking flows, and Laravel rebuilds for owner-led businesses.",
+    "Siddharth Kothari is a software engineer, backend, based in India. Laravel, APIs, payments, and custom websites — plus independent rebuilds and booking work.",
 };
 
 export const processSteps = [
@@ -40,8 +40,8 @@ export const processSteps = [
 ] as const;
 
 export const tools = {
-  Frontend: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
   Backend: ["Laravel", "PHP", "MySQL", "REST APIs"],
+  Frontend: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
   Product: ["WordPress", "Razorpay", "Git", "SEO"],
 } as const;
 

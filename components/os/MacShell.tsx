@@ -44,7 +44,11 @@ function ShellFrame({ children }: { children: ReactNode }) {
       <MenuBar />
       <AnimatePresence>
         {pathname !== "/" && !minimized && (
-          <Window key={getAppForPath(pathname)?.id ?? "finder"} title={title ?? "Finder"}>
+          <Window
+            key={getAppForPath(pathname)?.id ?? "finder"}
+            title={title ?? "Finder"}
+            compact={getAppForPath(pathname)?.id === "mail"}
+          >
             {children}
           </Window>
         )}

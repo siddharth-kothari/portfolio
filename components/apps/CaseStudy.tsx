@@ -53,7 +53,7 @@ export function CaseStudy({ project }: { project: Project }) {
           View live site
         </a>
         <Link href="/contact" className="mac-btn-secondary">
-          Start a similar project
+          Get in touch
         </Link>
       </div>
     </article>

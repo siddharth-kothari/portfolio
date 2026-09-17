@@ -7,10 +7,9 @@ export function WorkIndex() {
     <div className="app-page">
       <header className="app-hero">
         <p className="eyebrow">Selected work</p>
-        <h1>Sites that have to work in the real world.</h1>
+        <h1>Selected work.</h1>
         <p className="lede">
-          Brand, clinic, studio, and commerce work — each one a specific problem, not a template
-          with the logo swapped.
+          Sites in production — and the booking, payments, and CMS work underneath.
         </p>
       </header>
 

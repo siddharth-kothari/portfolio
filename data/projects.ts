@@ -25,15 +25,15 @@ export const projects: Project[] = [
   {
     slug: "core",
     title: "Core",
-    tagline: "A furniture and surface brand that needed to look as considered as the product.",
+    tagline: "Next.js marketing site for a furniture brand — fast enough to feel like the showroom.",
     description:
-      "A clean, fast marketing site for a furniture and surface-solutions brand — built so browsing feels quiet, premium, and obvious on a phone.",
+      "A Next.js and TypeScript marketing site for a furniture and surface-solutions brand — built to stay light on a phone.",
     problem:
-      "Core sells physical product with a strong material story. The site had to carry that quality without getting in the way — no template clutter, no sluggish galleries.",
+      "Core sells physical product. The site had to carry that quality without template clutter or sluggish galleries.",
     built:
-      "A Next.js and TypeScript site with a tight information architecture, responsive product storytelling, and performance work so pages stay light.",
+      "Next.js and TypeScript with a tight information architecture, responsive product pages, and performance work so loads stay light.",
     result:
-      "A brand surface that feels like the showroom: calm navigation, fast loads, and a path that is easy to share with buyers.",
+      "A site buyers can share: calm navigation, fast pages, no CMS theme in the way.",
     tech: ["Next.js", "TypeScript", "Tailwind CSS"],
     date: "September 2025",
     link: "https://core-value.in/",
@@ -42,15 +42,15 @@ export const projects: Project[] = [
   {
     slug: "facing-east-studios",
     title: "Facing East Studios",
-    tagline: "An ad studio that needed a site as sharp as the work they pitch.",
+    tagline: "Next.js studio site: selected work first, no CMS theme.",
     description:
-      "A modern, minimal website for an ad agency — stable, fast, and built to let the reel do the talking.",
+      "A Next.js site for an ad studio — stable, fast, and structured so the reel does the talking.",
     problem:
-      "Agency sites either over-design themselves or look like a CMS theme. Facing East needed a portfolio that felt like the studio: confident, spare, and reliable.",
+      "Agency sites either over-build themselves or look like a CMS theme. Facing East needed selected work first, and a site that stays up.",
     built:
-      "A Next.js site with a restrained layout, motion used only where it helps, and a structure that puts selected work first.",
+      "A Next.js site with a restrained layout, motion only where it helps, and a structure that puts work first.",
     result:
-      "A polished first impression for new-business conversations — the kind of site you are not embarrassed to send after a call.",
+      "A first impression you can send after a call — spare, reliable, not a theme.",
     tech: ["Next.js", "TypeScript", "Tailwind CSS"],
     date: "May 2025",
     link: "https://facingeast.studio/",
@@ -59,15 +59,15 @@ export const projects: Project[] = [
   {
     slug: "dental-care-solutions",
     title: "Dental Care Solutions",
-    tagline: "A Pune clinic site that holds both treatments and a community story.",
+    tagline: "Laravel clinic site — treatments, outreach, readable on a phone.",
     description:
-      "A Laravel site for a dental clinic — services, outreach for underprivileged children, and an experience that stays readable on mobile.",
+      "A Laravel site for a Pune dental clinic — treatment pages, community outreach, and a layout that stays readable on mobile.",
     problem:
-      "Clinics often get a brochure template. This practice also needed to talk about community work without the site feeling like two different products.",
+      "The practice needed treatments and a community story in one product, not a brochure template that splits into two sites.",
     built:
-      "A Laravel and Tailwind build with GSAP used sparingly for section rhythm, clear treatment pages, and a story path for outreach.",
+      "Laravel and Tailwind, GSAP used sparingly for section rhythm, clear treatment routes, and a path for outreach content.",
     result:
-      "Patients can find care; visitors can understand the mission. One site, two jobs, no noise.",
+      "Patients can find care; visitors can read the mission. One codebase, two jobs.",
     tech: ["Laravel", "GSAP", "Tailwind CSS"],
     date: "October 2024",
     link: "https://dental-care-solutions.in/",
@@ -76,15 +76,15 @@ export const projects: Project[] = [
   {
     slug: "glam2door",
     title: "Glam2door",
-    tagline: "Salon-at-home booking that had to feel as easy as the service.",
+    tagline: "Salon-at-home booking: services and the appointment on one path.",
     description:
-      "A booking-led website for a salon-at-home business — services on display, appointments a tap away.",
+      "A booking-led Next.js site for a salon-at-home business — services on display, appointments a tap away.",
     problem:
-      "If booking is awkward, the phone starts ringing instead. The site needed to sell the service and take the appointment without a scavenger hunt.",
+      "If booking is awkward, the phone starts ringing. The site had to show the service and take the appointment without a scavenger hunt.",
     built:
-      "A Next.js marketing and booking surface with Framer Motion for light delight and a layout that keeps services and the ask on the same path.",
+      "A Next.js marketing and booking surface with light motion and a layout that keeps services and the ask on the same path.",
     result:
-      "A site that looks like a brand and behaves like a front desk — browse, choose, book.",
+      "Browse, choose, book — a front desk in the browser, not a brochure plus a WhatsApp link.",
     tech: ["Next.js", "Tailwind CSS", "Framer Motion"],
     date: "November 2023",
     link: "https://www.glam2door.com/",
@@ -93,15 +93,15 @@ export const projects: Project[] = [
   {
     slug: "cartify",
     title: "Cartify",
-    tagline: "A full e-commerce loop: accounts, catalogue, and checkout.",
+    tagline: "Storefront with auth, catalogue, and checkout wired end to end.",
     description:
-      "A Next.js storefront with authentication, product management, and a secure payment path — useful as a product, not just a mock.",
+      "A Next.js storefront with authentication, product management, and a payment path — a working shop, not a mock.",
     problem:
-      "Most demo shops stop at a pretty grid. Cartify needed the unglamorous parts: auth, catalogue, and paying without a broken state.",
+      "Most demo shops stop at a pretty grid. Cartify needed auth, catalogue, and checkout without a broken state.",
     built:
       "Next.js, TypeScript, NextAuth, and Tailwind — product flows plus a payment gateway wired end to end.",
     result:
-      "A working store you can sign into, shop, and check out. The same muscles used on client commerce work.",
+      "A store you can sign into, shop, and check out. The same muscles used on client commerce work.",
     tech: ["Next.js", "TypeScript", "Tailwind CSS"],
     date: "January 2024",
     link: "https://cartify.siddharthkothari.com/",

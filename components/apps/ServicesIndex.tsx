@@ -6,10 +6,9 @@ export function ServicesIndex() {
     <div className="app-page">
       <header className="app-hero">
         <p className="eyebrow">Services</p>
-        <h1>What I take on.</h1>
+        <h1>Independent work.</h1>
         <p className="lede">
-          Custom websites, booking and commerce, and rebuilds for teams who have outgrown a theme.
-          Projects typically start after a short call.
+          Laravel rebuilds, booking and payments, custom sites. A short call, then a scope.
         </p>
       </header>
 

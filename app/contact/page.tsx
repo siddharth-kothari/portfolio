@@ -4,7 +4,7 @@ import { getSiteUrl, site } from "@/data/site";
 
 export const metadata: Metadata = {
   title: `Contact — ${site.name}`,
-  description: "Start a project with Siddharth Kothari.",
+  description: "Write to Siddharth Kothari.",
   alternates: { canonical: `${getSiteUrl()}/contact` },
 };
 

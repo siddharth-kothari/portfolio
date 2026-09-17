@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { experience, processSteps, site, tools } from "@/data/site";
+import { experience, site, tools } from "@/data/site";
 
 export function AboutApp() {
   return (
@@ -21,31 +21,18 @@ export function AboutApp() {
         />
         <div className="space-y-4 text-[15px] leading-relaxed opacity-85">
           <p>
-            I am a full-stack developer based in {site.location.split("·")[0].trim()}, working remotely
-            with owner-led businesses. I care about sites that load quickly, read clearly, and make
-            the next step obvious.
+            Software Engineer, Backend. Based in India, working remotely. I care about systems that
+            stay fast, clear, and maintainable — APIs, payments, CMS, and the site that sits on top.
           </p>
           <p>
-            Days are spent shipping at i2e Consulting. Before that I trained on the same team, and
-            interned at DigiLocker testing real products used by millions. Freelance is where I take
-            the same craft to brands, clinics, and studios who want a site that feels theirs.
+            Days are spent shipping at i2e Consulting (Pats! and client work: PHP, APIs, Razorpay).
+            Before that, the same team as a trainee, and DigiLocker as an intern testing products
+            used by millions. Independent work is Laravel rebuilds, booking/payments, and custom
+            sites — that is Services.
           </p>
           <p>Outside the machine: new places, photography, and the occasional open-source rabbit hole.</p>
         </div>
       </div>
-
-      <section className="mt-12">
-        <h2>How we work</h2>
-        <div className="mt-5 grid gap-4 md:grid-cols-4">
-          {processSteps.map((step, index) => (
-            <div key={step.title} className="rounded-2xl bg-black/5 p-4 dark:bg-white/5">
-              <p className="text-xs opacity-50">0{index + 1}</p>
-              <h3 className="mt-2 font-serif text-xl">{step.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed opacity-75">{step.body}</p>
-            </div>
-          ))}
-        </div>
-      </section>
 
       <section className="mt-12">
         <h2>Experience</h2>
@@ -79,7 +66,7 @@ export function AboutApp() {
       </section>
 
       <Link href="/contact" className="mac-btn mt-10 inline-flex">
-        Work with me
+        Get in touch
       </Link>
     </div>
   );

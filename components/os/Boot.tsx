@@ -39,7 +39,7 @@ export function Boot() {
 
   return (
     <div className="fixed inset-0 z-[80] flex flex-col items-center justify-center bg-black text-white">
-      <div className="mb-10 text-5xl font-light tracking-tight">
+      <div className="mb-10 text-7xl font-serif tracking-tight">
         {site.firstName.charAt(0)}
       </div>
       <div className="h-1 w-40 overflow-hidden rounded-full bg-white/15">

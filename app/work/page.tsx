@@ -4,7 +4,7 @@ import { getSiteUrl, site } from "@/data/site";
 
 export const metadata: Metadata = {
   title: `Work — ${site.name}`,
-  description: "Selected websites for brands, clinics, studios, and commerce.",
+  description: "Selected production sites — Next.js and Laravel, including booking, payments, and CMS work.",
   alternates: { canonical: `${getSiteUrl()}/work` },
 };
 

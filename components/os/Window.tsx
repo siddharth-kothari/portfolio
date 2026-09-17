@@ -8,10 +8,11 @@ import { useShell } from "./shell-context";
 
 type WindowProps = {
   title: string;
+  compact?: boolean;
   children: ReactNode;
 };
 
-export function Window({ title, children }: WindowProps) {
+export function Window({ title, compact = false, children }: WindowProps) {
   const router = useRouter();
   const { setMinimized } = useShell();
   const reduce = useReducedMotion();
@@ -23,7 +24,12 @@ export function Window({ title, children }: WindowProps) {
 
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape") close();
+      if (event.key === "Escape") {
+        if (event.defaultPrevented || document.querySelector("[data-radix-select-content]")) {
+          return;
+        }
+        close();
+      }
       if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "w") {
         event.preventDefault();
         close();
@@ -76,11 +82,18 @@ export function Window({ title, children }: WindowProps) {
         }
         style={{ originX: 0.5, originY: 1 }}
         className={cn(
-          zoomed ? "h-full w-full" : "h-[min(760px,calc(100dvh-8.5rem))] w-full max-w-[1080px]"
+          zoomed
+            ? "h-full w-full"
+            : compact
+              ? "w-full max-w-[40rem] max-h-[min(720px,calc(100dvh-8.5rem))]"
+              : "h-[min(760px,calc(100dvh-8.5rem))] w-full max-w-[1080px]"
         )}
       >
         <div
-          className="mac-window flex h-full flex-col overflow-hidden"
+          className={cn(
+            "mac-window flex flex-col overflow-hidden",
+            zoomed || !compact ? "h-full" : "max-h-[inherit]"
+          )}
           style={{ transform: zoomed ? undefined : `translate(${offset.x}px, ${offset.y}px)` }}
         >
           <div

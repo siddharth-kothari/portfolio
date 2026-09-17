@@ -4,7 +4,7 @@ import { getSiteUrl, site } from "@/data/site";
 
 export const metadata: Metadata = {
   title: `Services — ${site.name}`,
-  description: "Custom brand websites, booking and commerce, Laravel rebuilds, and retainers.",
+  description: "Laravel rebuilds, booking and payments, custom websites, and retainers.",
   alternates: { canonical: `${getSiteUrl()}/services` },
 };
 

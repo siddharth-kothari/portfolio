@@ -36,7 +36,7 @@ export function Desktop() {
       <div className="absolute inset-x-4 top-14 z-10 max-w-3xl sm:left-10 sm:right-auto sm:top-16">
         <section className="desktop-glass rounded-3xl p-6 text-neutral-900 dark:text-white sm:p-8">
           <p className="text-xs font-medium uppercase tracking-[0.16em] text-neutral-800 dark:text-white/70">
-            {site.availability} · {site.location}
+            {site.location}
           </p>
           <h1 className="mt-3 font-serif text-4xl leading-tight sm:text-5xl">
             {site.name}
@@ -50,12 +50,12 @@ export function Desktop() {
               See selected work
             </Link>
             <Link href="/contact" className="mac-btn-ghost">
-              Start a project
+              Get in touch
             </Link>
           </div>
         </section>
 
-        <div className="mt-4 grid gap-4 sm:grid-cols-[140px_1fr] lg:grid-cols-[140px_1fr_200px]">
+        <div className="mt-4 grid gap-4 sm:grid-cols-[140px_minmax(0,200px)]">
           <div className="desktop-glass rounded-3xl p-4 text-center text-black dark:text-white">
             <p className="text-sm font-bold tracking-[0.18em] text-red-500">
               {today.month || "—"}

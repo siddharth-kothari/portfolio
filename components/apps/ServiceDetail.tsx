@@ -37,7 +37,7 @@ export function ServiceDetail({ service }: { service: Service }) {
       </section>
 
       <Link href="/contact" className="mac-btn mt-10 inline-flex">
-        Enquire about this
+        Get in touch
       </Link>
     </article>
   );
