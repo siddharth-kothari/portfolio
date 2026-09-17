@@ -124,7 +124,7 @@ export function Desktop() {
                 href={`/work/${project.slug}`}
                 className="desktop-glass group overflow-hidden rounded-2xl"
               >
-                <div className="relative aspect-[16/10] bg-black/10 dark:bg-white/5">
+                <div className="relative aspect-16/10 bg-black/10 dark:bg-white/5">
                   <Image
                     src={project.image}
                     alt={project.title}

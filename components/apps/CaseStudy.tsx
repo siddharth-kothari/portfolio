@@ -14,7 +14,7 @@ export function CaseStudy({ project }: { project: Project }) {
       <h1 className="max-w-3xl">{project.title}</h1>
       <p className="lede">{project.tagline}</p>
 
-      <div className="relative my-8 aspect-[16/9] overflow-hidden rounded-2xl">
+      <div className="relative my-8 aspect-video overflow-hidden rounded-2xl">
         <Image
           src={project.image}
           alt={project.title}

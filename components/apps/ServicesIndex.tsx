@@ -17,7 +17,7 @@ export function ServicesIndex() {
           <Link
             key={service.slug}
             href={`/services/${service.slug}`}
-            className="rounded-2xl border border-black/8 p-5 transition hover:bg-black/[0.03] dark:border-white/10 dark:hover:bg-white/[0.04] md:p-6"
+            className="rounded-2xl border border-black/8 p-5 transition hover:bg-black/3 dark:border-white/10 dark:hover:bg-white/4 md:p-6"
           >
             <p className="eyebrow">{service.eyebrow}</p>
             <h2 className="mt-2 font-serif text-3xl">{service.title}</h2>

@@ -85,7 +85,7 @@ export function Window({ title, compact = false, children }: WindowProps) {
           zoomed
             ? "h-full w-full"
             : compact
-              ? "w-full max-w-[40rem] max-h-[min(720px,calc(100dvh-8.5rem))]"
+              ? "w-full max-w-160 max-h-[min(720px,calc(100dvh-8.5rem))]"
               : "h-[min(760px,calc(100dvh-8.5rem))] w-full max-w-[1080px]"
         )}
       >

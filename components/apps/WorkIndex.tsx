@@ -16,7 +16,7 @@ export function WorkIndex() {
       <div className="grid gap-6 md:grid-cols-2">
         {projects.map((project) => (
           <Link key={project.slug} href={`/work/${project.slug}`} className="group overflow-hidden rounded-2xl bg-black/5 dark:bg-white/5">
-            <div className="relative aspect-[16/10] overflow-hidden">
+            <div className="relative aspect-16/10 overflow-hidden">
               <Image
                 src={project.image}
                 alt={project.title}

@@ -193,7 +193,7 @@ function MailForm() {
             <span className="w-full border-t border-black/10 dark:border-white/10" />
           </div>
           <div className="relative flex justify-center text-[11px] uppercase tracking-[0.18em] opacity-50">
-            <span className="bg-[var(--mac-window)] px-3">Let’s connect on</span>
+            <span className="bg-(--mac-window) px-3">Let’s connect on</span>
           </div>
         </div>
 

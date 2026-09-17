@@ -57,7 +57,7 @@ export function Spotlight() {
   };
 
   return (
-    <div className="fixed inset-0 z-[70] bg-black/25 p-4" onClick={() => setSpotlightOpen(false)}>
+    <div className="fixed inset-0 z-70 bg-black/25 p-4" onClick={() => setSpotlightOpen(false)}>
       <div
         className="mac-spotlight mx-auto mt-[12vh] w-full max-w-xl overflow-hidden backdrop-blur-md"
         onClick={(event) => event.stopPropagation()}
@@ -81,7 +81,7 @@ export function Spotlight() {
             if (event.key === "Enter" && hits[safeActive]) go(hits[safeActive].href);
           }}
           placeholder="Search Work, Services, Mail…"
-          className="w-full border-b border-black/10 bg-transparent px-5 py-4 text-lg outline-none dark:border-white/10"
+          className="w-full border-b border-black/10 bg-transparent px-5 py-4 text-lg outline-hidden dark:border-white/10"
         />
         <ul className="max-h-80 overflow-y-auto p-2">
           {hits.length === 0 && (
