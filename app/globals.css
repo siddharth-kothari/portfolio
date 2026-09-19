@@ -427,12 +427,28 @@ body {
   opacity: 1;
 }
 
+.maintenance-bar-fill {
+  animation: maintenance-indeterminate 1.55s ease-in-out infinite;
+}
+
+@keyframes maintenance-indeterminate {
+  0% {
+    transform: translateX(-130%);
+  }
+  100% {
+    transform: translateX(280%);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .dock-item {
     transition: none;
   }
   .dock-item:hover {
     transform: none;
+  }
+  .maintenance-bar-fill {
+    animation: none;
   }
 }
 

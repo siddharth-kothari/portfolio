@@ -1,9 +1,11 @@
 import type { Metadata, Viewport } from "next";
+import { headers } from "next/headers";
 import { Geist, Instrument_Serif } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { MacShell } from "@/components/os/MacShell";
 import { ThemeScript } from "@/components/os/ThemeScript";
 import { JsonLd } from "@/lib/json-ld";
+import { MAINTENANCE_HEADER, isMaintenanceEnabled } from "@/lib/maintenance";
 import { getSiteUrl, isProduction, site } from "@/data/site";
 import "./globals.css";
 
@@ -61,21 +63,24 @@ export const viewport: Viewport = {
   maximumScale: 5,
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const maintenance =
+    isMaintenanceEnabled() && (await headers()).get(MAINTENANCE_HEADER) === "1";
+
   return (
     <html lang="en" className={`${geist.variable} ${instrument.variable}`} suppressHydrationWarning>
       <head>
         <ThemeScript />
-        <JsonLd />
+        {!maintenance && <JsonLd />}
       </head>
       <body>
-        <MacShell>{children}</MacShell>
+        {maintenance ? children : <MacShell>{children}</MacShell>}
       </body>
-      {isProduction() && (
+      {isProduction() && !maintenance && (
         <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID || "G-CR8XJ5DFPX"} />
       )}
     </html>
