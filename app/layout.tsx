@@ -1,86 +1,88 @@
 import type { Metadata, Viewport } from "next";
+import { headers } from "next/headers";
+import { Geist, Instrument_Serif } from "next/font/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
+import { MacShell } from "@/components/os/MacShell";
+import { ThemeScript } from "@/components/os/ThemeScript";
+import { JsonLd } from "@/lib/json-ld";
+import { MAINTENANCE_HEADER, isMaintenanceEnabled } from "@/lib/maintenance";
+import { getSiteUrl, isProduction, site } from "@/data/site";
 import "./globals.css";
-import { GoogleTagManager, GoogleAnalytics } from "@next/third-parties/google";
-import Provider from "@/lib/Provider";
-import Clarity from '@microsoft/clarity';
-import { Poppins } from "next/font/google";
 
-const isProduction = process.env.NEXT_ENV === 'production';
-
-const poppins = Poppins({
+const geist = Geist({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-poppins", // optional but recommended
-  display: "swap",
+  variable: "--font-geist",
 });
 
+const instrument = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-instrument",
+});
+
+const url = getSiteUrl();
+
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_URL || 'http://localhost:3000'),
-  title: process.env.NEXT_SITE_TITLE,
-  description: process.env.NEXT_SITE_DESCRIPTION,
-  keywords: process.env.NEXT_SITE_KEYWORDS,
-  authors: [{ name: "Siddharth Kothari", url: "https://github.com/siddharth-kothari" }],
+  metadataBase: new URL(url),
+  title: {
+    default: `${site.name} — ${site.shortHeadline}`,
+    template: `%s`,
+  },
+  description: site.description,
+  keywords: site.keywords,
+  authors: [{ name: site.name, url: site.github }],
   openGraph: {
-    title: process.env.NEXT_SITE_TITLE,
-    description: process.env.NEXT_SITE_DESCRIPTION,
-    url: process.env.NEXT_URL,
-    images: [
-      {
-        url: '/logo.png', // Must be an absolute URL
-        alt: process.env.NEXT_SITE_TITLE,
-      },
-    ],
-    locale: 'en_US',
-    type: 'website',
+    title: `${site.name} — ${site.shortHeadline}`,
+    description: site.description,
+    url,
+    images: [{ url: "/logo.webp", alt: site.name }],
+    locale: "en_US",
+    type: "website",
   },
   twitter: {
-    card: 'summary_large_image',
-    title: process.env.NEXT_SITE_TITLE,
-    description: process.env.NEXT_SITE_DESCRIPTION,
-    images: ['/logo.png'], // Must be an absolute URL
+    card: "summary_large_image",
+    title: `${site.name} — ${site.shortHeadline}`,
+    description: site.description,
+    images: ["/logo.webp"],
   },
-  alternates: {
-    canonical: process.env.NEXT_URL,
-  },
+  alternates: { canonical: url },
   robots: {
-    index: isProduction, // Allow indexing in production
-    follow: isProduction, // Allow following links in production
-    nocache: isProduction, // Cache only in production
+    index: isProduction(),
+    follow: isProduction(),
     googleBot: {
-      index: isProduction,
-      follow: isProduction,
-      noimageindex: !isProduction, // Prevent image indexing in non-production environments
+      index: isProduction(),
+      follow: isProduction(),
     },
   },
-  
+  icons: { icon: "/logo.webp" },
 };
- 
+
 export const viewport: Viewport = {
-  width: 'device-width',
-  height: 'device-height',
+  width: "device-width",
   initialScale: 1,
   maximumScale: 5,
-  userScalable: true,
-}
+};
 
-const projectId = "plistqra3p";
-
-Clarity.init(projectId);
-
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const maintenance =
+    isMaintenanceEnabled() && (await headers()).get(MAINTENANCE_HEADER) === "1";
+
   return (
-    <html lang="en" className={poppins.variable}>
-      <GoogleTagManager gtmId="GTM-T3DF4J2X" />
-      <GoogleAnalytics gaId="G-CR8XJ5DFPX" />
-      <body className="font-poppins">
-        <Provider>
-          {children}
-        </Provider>
+    <html lang="en" className={`${geist.variable} ${instrument.variable}`} suppressHydrationWarning>
+      <head>
+        <ThemeScript />
+        {!maintenance && <JsonLd />}
+      </head>
+      <body>
+        {maintenance ? children : <MacShell>{children}</MacShell>}
       </body>
+      {isProduction() && !maintenance && (
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID || "G-CR8XJ5DFPX"} />
+      )}
     </html>
   );
 }

@@ -4,12 +4,7 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
 
   images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "assets.aceternity.com",
-      },
-    ],
+    qualities: [75, 90],
   },
 };
 
