@@ -28,16 +28,16 @@ export function Window({ title, compact = false, children }: WindowProps) {
         if (event.defaultPrevented || document.querySelector("[data-radix-select-content]")) {
           return;
         }
-        close();
+        router.push("/");
       }
       if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "w") {
         event.preventDefault();
-        close();
+        router.push("/");
       }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, []);
+  }, [router]);
 
   const onPointerDown = (event: PointerEvent<HTMLDivElement>) => {
     if (zoomed || window.matchMedia("(max-width: 767px)").matches) return;
