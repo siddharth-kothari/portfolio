@@ -35,7 +35,7 @@
     "@typescript/native": "npm:typescript@^7.0.2",
     "baseline-browser-mapping": "^2.11.31",
     "eslint": "^10.13.0",
-    "eslint-config-next": "^16.4.2",
+    "eslint-config-next": "^16.4.3",
     "postcss": "^8.5.31",
     "tailwindcss": "^4.3.3",
     "typescript": "npm:@typescript/typescript6@^6.0.2"
